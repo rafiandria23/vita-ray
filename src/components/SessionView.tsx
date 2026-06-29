@@ -1,6 +1,6 @@
-import type { TrainingDay } from '../data/types';
-import ExerciseCard from './ExerciseCard';
-import RestView from './RestView';
+import type { TrainingDay } from '@/data/types';
+import ExerciseCard from '@/components/ExerciseCard';
+import RestView from '@/components/RestView';
 
 export default function SessionView({ day }: Readonly<{ day: TrainingDay }>) {
   if (day.type === 'rest') return <RestView day={day} />;

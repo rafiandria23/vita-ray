@@ -36,3 +36,9 @@ Thumbs.db
 
 # TypeScript
 *.tsbuildinfo
+
+# TypeScript composite build output (vite.config.ts, tailwind.config.ts)
+vite.config.js
+vite.config.d.ts
+tailwind.config.js
+tailwind.config.d.ts

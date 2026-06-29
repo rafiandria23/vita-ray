@@ -31,18 +31,25 @@ Output goes to `dist/`. Deployed on Vercel — any push to `main` triggers a dep
 ```text
 src/
 ├── context/
-│   └── ThemeContext.tsx   # theme state + localStorage sync
+│   ├── ThemeContext.tsx   # theme state + localStorage sync
+│   └── UnitContext.tsx    # lbs/kg unit state + localStorage sync
+├── hooks/
+│   ├── useTheme.ts        # convenience wrapper for ThemeContext
+│   └── useUnit.ts         # convenience wrapper for UnitContext
+├── utils/
+│   └── weight.ts          # roundWeight, calcSetWeight, convertWeight
 ├── data/
 │   ├── program.ts         # all workout data — single source of truth
 │   └── types.ts           # shared TypeScript types
 ├── components/
-│   ├── WeekStrip.tsx      # day selector
+│   ├── WeekStrip.tsx      # day selector — horizontal on mobile, vertical on desktop
 │   ├── SessionView.tsx    # active day session
-│   ├── ExerciseCard.tsx   # expandable exercise with weight calculator
+│   ├── ExerciseCard.tsx   # expandable exercise with weight calculator + unit conversion
 │   ├── SetTable.tsx       # calculated set rows
 │   ├── TierBadge.tsx      # T1 / T2 / T3 badge
 │   ├── RestView.tsx       # rest day screen
-│   └── ThemeToggle.tsx    # cycles system → light → dark
+│   ├── ThemeToggle.tsx    # cycles system → light → dark
+│   └── UnitToggle.tsx     # switches between lbs and kg
 ├── styles/
 │   ├── main.scss          # entry — imports tailwind + partials
 │   ├── _variables.scss    # CSS custom properties per theme
@@ -54,6 +61,7 @@ src/
 
 ## Notes
 
-- All weights in lbs — no kg
-- No state persistence — resets on reload by design
-- Theme preference persisted to `localStorage`
+- Default unit is lbs — switch to kg via the toggle in the header
+- All weight math goes through `src/utils/weight.ts`
+- No workout state persistence — resets on reload by design
+- Theme and unit preference persisted to `localStorage`

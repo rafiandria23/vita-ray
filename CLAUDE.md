@@ -6,7 +6,7 @@ Personal workout plan app for Operation Vita Ray. Static React app — no backen
 
 - React 19 + Vite + TypeScript
 - Sass (`sass` package) for SCSS
-- Tailwind CSS v3
+- Tailwind CSS v3 (`tailwind.config.ts`)
 - Fonts: Bebas Neue (display) + Inter (body) via Google Fonts
 - Strict TypeScript — `strict: true` in tsconfig
 - Package manager: Yarn (corepack enabled) — never use npm or npx
@@ -60,26 +60,35 @@ vita-ray/
 │   ├── main.tsx
 │   ├── App.tsx
 │   ├── data/
-│   │   ├── program.ts        # all workout data — single source of truth
-│   │   └── types.ts          # shared TypeScript types
+│   │   ├── program.ts            # all workout data — single source of truth
+│   │   └── types.ts              # shared TypeScript types
 │   ├── components/
-│   │   ├── WeekStrip.tsx     # day selector — horizontal strip on mobile, vertical list on desktop
-│   │   ├── SessionView.tsx   # renders active day session
-│   │   ├── ExerciseCard.tsx  # expandable exercise with weight calculator
-│   │   ├── SetTable.tsx      # calculated set rows
-│   │   ├── TierBadge.tsx     # T1 / T2 / T3 colored badge
-│   │   ├── RestView.tsx      # rest day screen
-│   │   └── ThemeToggle.tsx   # cycles system → light → dark
-│   └── context/
-│       └── ThemeContext.tsx   # theme state + localStorage sync
+│   │   ├── WeekStrip.tsx         # day selector — horizontal strip on mobile, vertical list on desktop
+│   │   ├── SessionView.tsx       # renders active day session
+│   │   ├── ExerciseCard.tsx      # expandable exercise with weight calculator
+│   │   ├── SetTable.tsx          # calculated set rows
+│   │   ├── TierBadge.tsx         # T1 / T2 / T3 colored badge
+│   │   ├── RestView.tsx          # rest day screen
+│   │   ├── ThemeToggle.tsx       # cycles system → light → dark
+│   │   └── UnitToggle.tsx        # switches between lbs and kg
+│   ├── context/
+│   │   ├── ThemeContext.tsx      # theme state + localStorage sync
+│   │   └── UnitContext.tsx       # unit preference state + localStorage sync
+│   ├── hooks/
+│   │   ├── useTheme.ts           # convenience hook — consumes ThemeContext
+│   │   └── useUnit.ts            # convenience hook — consumes UnitContext
+│   ├── utils/
+│   │   └── weight.ts             # roundWeight, calcSetWeight, convertWeight
 │   └── styles/
-│       ├── main.scss         # entry — imports tailwind + global styles
-│       ├── _variables.scss   # CSS custom properties per theme
-│       ├── _typography.scss  # font imports, base type rules
-│       └── _components.scss  # custom styles Tailwind can't handle
+│       ├── main.scss             # entry — imports tailwind + global styles
+│       ├── _variables.scss       # CSS custom properties per theme
+│       ├── _typography.scss      # font imports, base type rules
+│       └── _components.scss      # custom styles Tailwind can't handle
 ├── index.html
 ├── vite.config.ts
-├── tailwind.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.node.json
 └── vercel.json
 ```
 
@@ -226,24 +235,95 @@ All components use CSS custom properties — never hardcode color hex values in 
 - All other text: Inter
 - Body size: 14px, line-height 1.6
 
-## Weight calculator logic
+## Hooks
 
-User enters their top set weight in lbs per exercise. App calculates all set weights automatically.
+### `useTheme` (`src/hooks/useTheme.ts`)
 
-```js
-// Round to nearest 5 lbs
-function round5(n) {
-  return Math.round(n / 5) * 5;
-}
+Convenience wrapper around `ThemeContext`. Throws if used outside `ThemeProvider`.
 
-// Calculate set weight from top set
-function calcSetWeight(topLbs, pct) {
-  if (!topLbs || topLbs <= 0) return '—';
-  return round5(topLbs * pct) + ' lbs';
+```ts
+import { useContext } from 'react';
+import { ThemeContext } from '@/context/ThemeContext';
+
+export function useTheme() {
+  const ctx = useContext(ThemeContext);
+  if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
+  return ctx;
 }
 ```
 
-Top set weight is stored in React state (`useState`) per exercise. No persistence — resets on page reload. This is intentional.
+### `useUnit` (`src/hooks/useUnit.ts`)
+
+Convenience wrapper around `UnitContext`. Throws if used outside `UnitProvider`.
+
+```ts
+import { useContext } from 'react';
+import { UnitContext } from '@/context/UnitContext';
+
+export function useUnit() {
+  const ctx = useContext(UnitContext);
+  if (!ctx) throw new Error('useUnit must be used within UnitProvider');
+  return ctx;
+}
+```
+
+## Weight utility (`src/utils/weight.ts`)
+
+All weight math lives here. No component does its own weight calculation.
+
+```ts
+import type { Unit } from '@/data/types';
+
+const LBS_TO_KG = 0.453592;
+const KG_TO_LBS = 2.20462;
+
+export function roundWeight(n: number, unit: Unit): number {
+  if (unit === 'lbs') return Math.round(n / 5) * 5;
+  return Math.round(n / 2.5) * 2.5;
+}
+
+export function calcSetWeight(topWeight: number, pct: number, unit: Unit): string {
+  if (!topWeight || topWeight <= 0) return '—';
+  return roundWeight(topWeight * pct, unit) + ' ' + unit;
+}
+
+export function convertWeight(value: number, from: Unit, to: Unit): number {
+  if (from === to) return value;
+  const raw = from === 'lbs' ? value * LBS_TO_KG : value * KG_TO_LBS;
+  return roundWeight(raw, to);
+}
+```
+
+## Weight calculator logic
+
+User enters their top set weight per exercise. App calculates all set weights automatically. Unit (lbs or kg) is controlled globally via `UnitContext`.
+
+```ts
+const LBS_TO_KG = 0.453592;
+const KG_TO_LBS = 2.20462;
+
+// Round to nearest 5 lbs or nearest 2.5 kg
+function roundWeight(n: number, unit: Unit): number {
+  if (unit === 'lbs') return Math.round(n / 5) * 5;
+  return Math.round(n / 2.5) * 2.5;
+}
+
+// Calculate set weight from top set
+function calcSetWeight(topWeight: number, pct: number, unit: Unit): string {
+  if (!topWeight || topWeight <= 0) return '—';
+  return roundWeight(topWeight * pct, unit) + ' ' + unit;
+}
+```
+
+**Unit conversion rules:**
+
+- lbs → kg: multiply by 0.453592, round to nearest 2.5 kg
+- kg → lbs: multiply by 2.20462, round to nearest 5 lbs
+- When the user switches units, the top set input value converts automatically
+- Unit preference is stored in `localStorage` as `'lbs'` or `'kg'` — persists across reloads (exception to the no-persistence rule — unit preference is a display setting, not workout data)
+- Default unit on first load: lbs
+
+Top set weight is stored in React state (`useState`) per exercise. Workout data itself resets on reload — this is intentional.
 
 T3 isolation sets use working weight directly (user enters their working weight, not a top set). The pct for T3 activation is 0.75 of working weight.
 
@@ -288,6 +368,7 @@ All shared types live in `src/data/types.ts`:
 // src/data/types.ts
 export type DayType = 'rest' | 'push' | 'pull' | 'legs';
 export type Tier = 'T1' | 'T2' | 'T3';
+export type Unit = 'lbs' | 'kg';
 
 export interface Exercise {
   id: string;
@@ -546,8 +627,11 @@ export const DAYS = [
 
 - Collapsed by default
 - Tap header to expand
-- Expanded state shows: cue note, top set weight input (lbs), calculated set table
-- Input: number type, step=5, min=0, placeholder="0"
+- Expanded state shows: cue note, top set weight input, calculated set table
+- Input: number type, min=0, placeholder="0"
+- Input step: 5 when unit is lbs, 2.5 when unit is kg
+- Input label shows current unit (lbs or kg)
+- When unit switches, input value converts automatically
 - Set table recalculates on every input change — no submit button
 - Top set row visually highlighted (accent color)
 - Chevron rotates 180deg when open
@@ -565,6 +649,28 @@ export const DAYS = [
 - T2: green tint bg, green text
 - T3: amber tint bg, amber text
 - Small pill, 9–10px font
+
+### UnitToggle
+
+- Renders as a pill toggle with two options: `lbs` and `kg`
+- Active unit is visually highlighted
+- Sits in the app header alongside ThemeToggle
+- On toggle: converts all currently entered top set weights in state to the new unit, rounds to correct increment
+- Reads and writes via `useUnit` hook
+
+### UnitContext
+
+- Exposes: `unit: Unit`, `setUnit: (u: Unit) => void`
+- On mount: reads from `localStorage` key `'vita-ray-unit'` — defaults to `'lbs'` if not set
+- On change: writes to `localStorage` and updates all weight displays immediately
+- Wrap `App.tsx` with `UnitProvider` alongside `ThemeProvider`
+
+### ThemeContext
+
+- Exposes: `theme: Theme`, `setTheme: (t: Theme) => void`
+- On mount: reads from `localStorage` key `'vita-ray-theme'` — defaults to `'system'` if not set
+- On change: writes to `localStorage` and updates `data-theme` attribute on `document.documentElement`
+- Wrap `App.tsx` with `ThemeProvider` as outermost provider
 
 ## Rest periods reference
 
@@ -588,30 +694,103 @@ Render this as a collapsible section at the bottom of the left panel on desktop,
 }
 ```
 
-Include this for safety — ensures all routes resolve to index.html.
+This ensures Vercel serves `index.html` for all paths — required for any client-side SPA even without hash routing.
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use 'src/styles/variables' as *;`,
-      },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
   },
 })
 ```
 
+Do NOT use `css.preprocessorOptions.scss.additionalData` — `_variables.scss` defines CSS custom properties, not Sass variables, so it does not need to be globally injected. Import it once in `main.scss` instead.
+
+## TypeScript config
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+```
+
+```json
+// tsconfig.node.json
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "strict": true
+  },
+  "include": ["vite.config.ts", "tailwind.config.ts"]
+}
+```
+
+## index.html spec
+
+```html
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Vita Ray — Operation Vita Ray workout plan and weight calculator" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <title>Vita Ray</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+```
+
+`data-theme="system"` is set on `<html>` as the initial value before React hydrates. `ThemeContext` reads from `localStorage` on mount and updates the attribute immediately — this prevents a flash of wrong theme on load.
+
 ## Standing orders (do not violate)
 
-- All weights in lbs only — never kg
-- Round all calculated weights to nearest 5 lbs
+- Default unit is lbs — user can switch to kg via UnitToggle in the header
+- Round calculated weights to nearest 5 lbs or nearest 2.5 kg depending on active unit
+- Unit preference and theme preference persist in localStorage — these are display settings, not workout data
+- All weight math goes through `src/utils/weight.ts` — no inline calculations in components
 - No data persistence — state resets on reload, this is by design
 - Single page app — no routing needed beyond the day selector
 - Mobile-first — design for 375px screen width minimum, responsive up to 1440px desktop
@@ -625,3 +804,7 @@ export default defineConfig({
 - Use Yarn only — never npm or npx
 - Corepack must be enabled before any yarn commands
 - `nodeLinker: node-modules` must be set in `.yarnrc.yml`
+- Use `@/` path alias for all imports — never use relative `../../` paths
+- All contexts consumed via their named hooks (`useTheme`, `useUnit`) — never `useContext` directly in components
+- No `any` types — strict TypeScript throughout
+- All utility functions in `src/utils/` — no business logic in components

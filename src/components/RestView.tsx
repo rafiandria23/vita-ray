@@ -1,4 +1,4 @@
-import type { TrainingDay } from '../data/types';
+import type { TrainingDay } from '@/data/types';
 
 export default function RestView({ day }: Readonly<{ day: TrainingDay }>) {
   return (

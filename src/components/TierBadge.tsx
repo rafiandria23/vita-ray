@@ -1,4 +1,4 @@
-import type { Tier } from '../data/types';
+import type { Tier } from '@/data/types';
 
 export default function TierBadge({ tier }: Readonly<{ tier: Tier }>) {
   return (

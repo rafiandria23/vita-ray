@@ -1,4 +1,4 @@
-import type { TrainingDay, DayType } from '../data/types';
+import type { TrainingDay, DayType } from '@/data/types';
 
 const TYPE_LABEL: Record<DayType, string> = {
   push: 'Push',
@@ -26,10 +26,7 @@ export default function WeekStrip({ days, activeIndex, onSelect }: Props) {
               key={day.id}
               disabled={isRest}
               onClick={() => onSelect(i)}
-              className={`
-                shrink-0 flex flex-col items-center px-3 py-2 rounded-lg border text-[13px] transition-colors
-                ${isRest ? 'opacity-40 cursor-default' : 'cursor-pointer'}
-              `}
+              className={`shrink-0 flex flex-col items-center px-3 py-2 rounded-lg border text-[13px] transition-colors ${isRest ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
               style={{
                 borderColor: isActive ? 'var(--tier-t1-text)' : 'var(--border)',
                 backgroundColor: isActive ? 'var(--tier-t1-bg)' : 'var(--bg-card)',
@@ -55,10 +52,7 @@ export default function WeekStrip({ days, activeIndex, onSelect }: Props) {
               key={day.id}
               disabled={isRest}
               onClick={() => onSelect(i)}
-              className={`
-                w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border text-left transition-colors
-                ${isRest ? 'opacity-40 cursor-default' : 'cursor-pointer'}
-              `}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg border text-left transition-colors ${isRest ? 'opacity-40 cursor-default' : 'cursor-pointer'}`}
               style={{
                 borderColor: isActive ? 'var(--tier-t1-text)' : 'var(--border)',
                 backgroundColor: isActive ? 'var(--tier-t1-bg)' : 'var(--bg-card)',
@@ -71,10 +65,7 @@ export default function WeekStrip({ days, activeIndex, onSelect }: Props) {
                 {day.short}
               </span>
               <div className="flex-1 min-w-0">
-                <p
-                  className="text-[13px] truncate"
-                  style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}
-                >
+                <p className="text-[13px] truncate" style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}>
                   {day.label}
                 </p>
                 {day.duration && (

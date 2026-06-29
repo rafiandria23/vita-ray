@@ -1,13 +1,6 @@
-import type { SetRow, Tier } from '../data/types';
-
-function round5(n: number): number {
-  return Math.round(n / 5) * 5;
-}
-
-function calcWeight(topLbs: number, pct: number): string {
-  if (!topLbs || topLbs <= 0) return '—';
-  return `${round5(topLbs * pct)} lbs`;
-}
+import type { SetRow, Tier } from '@/data/types';
+import { calcSetWeight } from '@/utils/weight';
+import { useUnit } from '@/hooks/useUnit';
 
 const T1_SETS: SetRow[] = [
   { name: 'Warmup', pct: 0.5, reps: '12–15' },
@@ -34,10 +27,11 @@ const SETS_BY_TIER: Record<Tier, SetRow[]> = { T1: T1_SETS, T2: T2_SETS, T3: T3_
 
 interface Props {
   readonly tier: Tier;
-  readonly topLbs: number;
+  readonly topWeight: number;
 }
 
-export default function SetTable({ tier, topLbs }: Props) {
+export default function SetTable({ tier, topWeight }: Props) {
+  const { unit } = useUnit();
   const sets = SETS_BY_TIER[tier];
 
   return (
@@ -57,7 +51,7 @@ export default function SetTable({ tier, topLbs }: Props) {
               className="text-right py-1 font-semibold"
               style={{ color: s.isTop ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}
             >
-              {calcWeight(topLbs, s.pct)}
+              {calcSetWeight(topWeight, s.pct, unit)}
             </td>
             <td className="text-right py-1 text-[var(--text-muted)]">{s.reps}</td>
           </tr>

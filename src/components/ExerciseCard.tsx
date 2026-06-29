@@ -1,11 +1,25 @@
-import { useState } from 'react';
-import type { Exercise } from '../data/types';
-import TierBadge from './TierBadge';
-import SetTable from './SetTable';
+import { useEffect, useState } from 'react';
+import type { Exercise } from '@/data/types';
+import { convertWeight } from '@/utils/weight';
+import { useUnit } from '@/hooks/useUnit';
+import TierBadge from '@/components/TierBadge';
+import SetTable from '@/components/SetTable';
 
 export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise }>) {
   const [open, setOpen] = useState(false);
-  const [topLbs, setTopLbs] = useState(0);
+  const [topWeight, setTopWeight] = useState(0);
+  const { unit } = useUnit();
+
+  // Convert entered weight when unit switches
+  const [prevUnit, setPrevUnit] = useState(unit);
+  useEffect(() => {
+    if (unit !== prevUnit && topWeight > 0) {
+      setTopWeight(convertWeight(topWeight, prevUnit, unit));
+    }
+    setPrevUnit(unit);
+  }, [unit]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const step = unit === 'lbs' ? 5 : 2.5;
 
   return (
     <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg overflow-hidden">
@@ -31,19 +45,19 @@ export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise
           <p className="text-[var(--text-secondary)] text-[13px] mt-3 mb-4 italic">{exercise.note}</p>
           <label className="block mb-3">
             <span className="block text-[var(--text-muted)] text-[12px] uppercase tracking-wider mb-1">
-              {exercise.tier === 'T3' ? 'Working weight (lbs)' : 'Top set weight (lbs)'}
+              {exercise.tier === 'T3' ? `Working weight (${unit})` : `Top set weight (${unit})`}
             </span>
             <input
               type="number"
-              step={5}
+              step={step}
               min={0}
               placeholder="0"
-              value={topLbs || ''}
-              onChange={(e) => setTopLbs(Number(e.target.value))}
+              value={topWeight || ''}
+              onChange={(e) => setTopWeight(Number(e.target.value))}
               className="w-full bg-[var(--bg-page)] border border-[var(--border)] rounded px-3 py-2 text-[var(--text-primary)] text-[14px] focus:outline-none focus:border-[var(--text-muted)]"
             />
           </label>
-          <SetTable tier={exercise.tier} topLbs={topLbs} />
+          <SetTable tier={exercise.tier} topWeight={topWeight} />
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
-import { useTheme, type Theme } from '../context/ThemeContext';
+import { useTheme } from '@/hooks/useTheme';
+import type { Theme } from '@/context/ThemeContext';
 
 const CYCLE: Record<Theme, Theme> = {
   system: 'light',

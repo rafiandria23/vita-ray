@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { DAYS, getDefaultDayIndex } from './data/program';
-import WeekStrip from './components/WeekStrip';
-import SessionView from './components/SessionView';
-import ThemeToggle from './components/ThemeToggle';
+import { DAYS, getDefaultDayIndex } from '@/data/program';
+import WeekStrip from '@/components/WeekStrip';
+import SessionView from '@/components/SessionView';
+import ThemeToggle from '@/components/ThemeToggle';
+import UnitToggle from '@/components/UnitToggle';
 
 const REST_PERIODS = [
   { after: 'Top set — T1', rest: '3 min' },
@@ -64,7 +65,10 @@ export default function App() {
             <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest mb-0.5">Operation</p>
             <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">Vita Ray</h1>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-3">
+            <UnitToggle />
+            <ThemeToggle />
+          </div>
         </header>
         <div className="-mx-4 px-4 mb-4">
           <WeekStrip days={DAYS} activeIndex={activeIndex} onSelect={setActiveIndex} />
@@ -87,7 +91,10 @@ export default function App() {
           <header>
             <div className="flex items-start justify-between mb-1">
               <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest">Operation</p>
-              <ThemeToggle />
+              <div className="flex items-center gap-3">
+                <UnitToggle />
+                <ThemeToggle />
+              </div>
             </div>
             <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">Vita Ray</h1>
           </header>

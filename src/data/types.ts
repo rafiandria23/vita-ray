@@ -1,5 +1,6 @@
 export type DayType = 'rest' | 'push' | 'pull' | 'legs';
 export type Tier = 'T1' | 'T2' | 'T3';
+export type Unit = 'lbs' | 'kg';
 
 export interface Exercise {
   id: string;

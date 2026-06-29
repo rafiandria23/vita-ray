@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 
 export type Theme = 'system' | 'light' | 'dark';
 
@@ -7,7 +7,7 @@ interface ThemeContextValue {
   setTheme: (t: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextValue>({
+export const ThemeContext = createContext<ThemeContextValue>({
   theme: 'system',
   setTheme: () => {},
 });
@@ -23,18 +23,14 @@ export function ThemeProvider({ children }: Readonly<{ children: React.ReactNode
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem('vita-ray-theme', theme);
+    try {
+      localStorage.setItem('vita-ray-theme', theme);
+    } catch {
+      // storage unavailable — theme still works in-memory
+    }
   }, [theme]);
 
   const value = useMemo(() => ({ theme, setTheme }), [theme]);
 
-  return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-export function useTheme() {
-  return useContext(ThemeContext);
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
