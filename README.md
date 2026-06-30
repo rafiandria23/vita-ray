@@ -1,6 +1,7 @@
 # Vita Ray
 
 [![Vercel](https://img.shields.io/badge/deployed_on-Vercel-black?logo=vercel&logoColor=white)](https://vita-ray.vercel.app)
+[![CircleCI](https://circleci.com/gh/rafiandria23/vita-ray.svg?style=shield)](https://circleci.com/gh/rafiandria23/vita-ray)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rafiandria23_vita-ray&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rafiandria23_vita-ray)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=rafiandria23_vita-ray&metric=coverage)](https://sonarcloud.io/summary/new_code?id=rafiandria23_vita-ray)
 
