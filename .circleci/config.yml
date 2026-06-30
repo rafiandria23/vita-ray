@@ -1,0 +1,65 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
+
+jobs:
+  lint-and-typecheck:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn format:check
+
+  test:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn test:coverage
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage
+
+  sonar-scan:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - sonarcloud/scan
+
+  build:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn build
+
+workflows:
+  ci:
+    jobs:
+      - lint-and-typecheck
+      - test
+      - sonar-scan:
+          requires:
+            - test
+          context: SonarCloud
+      - build:
+          requires:
+            - lint-and-typecheck
+            - test

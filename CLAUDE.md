@@ -9,6 +9,7 @@ Personal workout plan app for Operation Vita Ray. Static React app — no backen
 - Tailwind CSS v3 (`tailwind.config.ts`)
 - Fonts: Bebas Neue (display) + Inter (body) via Google Fonts
 - Strict TypeScript — `strict: true` in tsconfig
+- Node.js: latest LTS — never pin to a specific outdated version
 - Package manager: Yarn (corepack enabled) — never use npm or npx
 
 ## Package manager setup
@@ -34,6 +35,25 @@ Set `nodeLinker` to `node-modules` in `.yarnrc.yml` — required for Vite and Ta
 # .yarnrc.yml
 nodeLinker: node-modules
 ```
+
+Pin the Node version via `.nvmrc` so local dev, CI, and Vercel all resolve the same LTS release:
+
+```text
+# .nvmrc
+lts/*
+```
+
+`package.json` should also declare the `engines` field to fail fast on the wrong Node major version:
+
+```json
+{
+  "engines": {
+    "node": ">=20"
+  }
+}
+```
+
+`cimg/node:lts` in CircleCI resolves automatically to current LTS — no manual bumping needed there. `engines.node` in `package.json` should still be reviewed periodically and adjusted to reflect the current LTS floor as it advances.
 
 Install sass for SCSS support:
 
@@ -152,77 +172,77 @@ CSS custom properties are defined per theme in `_variables.scss`:
 :root[data-theme='dark'],
 :root[data-theme='system'] {
   // system defaults to dark — overridden by media query below
-  --bg-page:        #0A0A0A;
-  --bg-card:        #141414;
-  --bg-card-hover:  #1C1C1C;
-  --border:         #2A2A2A;
-  --text-primary:   #F0EDE6;
-  --text-secondary: #9A9790;
-  --text-muted:     #5A5855;
+  --bg-page: #0a0a0a;
+  --bg-card: #141414;
+  --bg-card-hover: #1c1c1c;
+  --border: #2a2a2a;
+  --text-primary: #f0ede6;
+  --text-secondary: #9a9790;
+  --text-muted: #5a5855;
 
-  --tier-t1-bg:     #0C1A2E;
-  --tier-t1-text:   #85B7EB;
-  --tier-t2-bg:     #0A1E16;
-  --tier-t2-text:   #5DCAA5;
-  --tier-t3-bg:     #1E1608;
-  --tier-t3-text:   #EF9F27;
+  --tier-t1-bg: #0c1a2e;
+  --tier-t1-text: #85b7eb;
+  --tier-t2-bg: #0a1e16;
+  --tier-t2-text: #5dcaa5;
+  --tier-t3-bg: #1e1608;
+  --tier-t3-text: #ef9f27;
 
-  --push-bg:        #1E1408;
-  --push-text:      #EF9F27;
-  --pull-bg:        #0C1A2E;
-  --pull-text:      #85B7EB;
-  --legs-bg:        #0A1E16;
-  --legs-text:      #5DCAA5;
+  --push-bg: #1e1408;
+  --push-text: #ef9f27;
+  --pull-bg: #0c1a2e;
+  --pull-text: #85b7eb;
+  --legs-bg: #0a1e16;
+  --legs-text: #5dcaa5;
 }
 
 :root[data-theme='light'] {
-  --bg-page:        #F5F3EE;
-  --bg-card:        #FFFFFF;
-  --bg-card-hover:  #F0EDE6;
-  --border:         #D3D1C7;
-  --text-primary:   #0A0A0A;
-  --text-secondary: #5A5855;
-  --text-muted:     #9A9790;
+  --bg-page: #f5f3ee;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0ede6;
+  --border: #d3d1c7;
+  --text-primary: #0a0a0a;
+  --text-secondary: #5a5855;
+  --text-muted: #9a9790;
 
-  --tier-t1-bg:     #E6F1FB;
-  --tier-t1-text:   #0C447C;
-  --tier-t2-bg:     #E1F5EE;
-  --tier-t2-text:   #085041;
-  --tier-t3-bg:     #FAEEDA;
-  --tier-t3-text:   #633806;
+  --tier-t1-bg: #e6f1fb;
+  --tier-t1-text: #0c447c;
+  --tier-t2-bg: #e1f5ee;
+  --tier-t2-text: #085041;
+  --tier-t3-bg: #faeeda;
+  --tier-t3-text: #633806;
 
-  --push-bg:        #FFF3E0;
-  --push-text:      #633806;
-  --pull-bg:        #E6F1FB;
-  --pull-text:      #0C447C;
-  --legs-bg:        #EAF3DE;
-  --legs-text:      #27500A;
+  --push-bg: #fff3e0;
+  --push-text: #633806;
+  --pull-bg: #e6f1fb;
+  --pull-text: #0c447c;
+  --legs-bg: #eaf3de;
+  --legs-text: #27500a;
 }
 
 // system theme — respect OS preference
 @media (prefers-color-scheme: light) {
   :root[data-theme='system'] {
-    --bg-page:        #F5F3EE;
-    --bg-card:        #FFFFFF;
-    --bg-card-hover:  #F0EDE6;
-    --border:         #D3D1C7;
-    --text-primary:   #0A0A0A;
-    --text-secondary: #5A5855;
-    --text-muted:     #9A9790;
+    --bg-page: #f5f3ee;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0ede6;
+    --border: #d3d1c7;
+    --text-primary: #0a0a0a;
+    --text-secondary: #5a5855;
+    --text-muted: #9a9790;
 
-    --tier-t1-bg:     #E6F1FB;
-    --tier-t1-text:   #0C447C;
-    --tier-t2-bg:     #E1F5EE;
-    --tier-t2-text:   #085041;
-    --tier-t3-bg:     #FAEEDA;
-    --tier-t3-text:   #633806;
+    --tier-t1-bg: #e6f1fb;
+    --tier-t1-text: #0c447c;
+    --tier-t2-bg: #e1f5ee;
+    --tier-t2-text: #085041;
+    --tier-t3-bg: #faeeda;
+    --tier-t3-text: #633806;
 
-    --push-bg:        #FFF3E0;
-    --push-text:      #633806;
-    --pull-bg:        #E6F1FB;
-    --pull-text:      #0C447C;
-    --legs-bg:        #EAF3DE;
-    --legs-text:      #27500A;
+    --push-bg: #fff3e0;
+    --push-text: #633806;
+    --pull-bg: #e6f1fb;
+    --pull-text: #0c447c;
+    --legs-bg: #eaf3de;
+    --legs-text: #27500a;
   }
 }
 ```
@@ -331,30 +351,30 @@ T3 isolation sets use working weight directly (user enters their working weight,
 
 **T1 — Primary compound (5 sets):**
 
-| Set | % | Reps |
-| --- | --- | --- |
-| Warmup | 50% | 12–15 |
-| Bridge | 70% | 10–12 |
-| Top set | 100% | 4–6 |
-| Back-off 1 | 75% | 8–10 |
-| Back-off 2 | 75% | 8–10 |
+| Set        | %    | Reps  |
+| ---------- | ---- | ----- |
+| Warmup     | 50%  | 12–15 |
+| Bridge     | 70%  | 10–12 |
+| Top set    | 100% | 4–6   |
+| Back-off 1 | 75%  | 8–10  |
+| Back-off 2 | 75%  | 8–10  |
 
 **T2 — Secondary compound (4 sets):**
 
-| Set | % | Reps |
-| --- | --- | --- |
-| Warmup | 55% | 12 |
-| Top set | 100% | 6–8 |
-| Back-off 1 | 70% | 8–10 |
-| Back-off 2 | 70% | 8–10 |
+| Set        | %    | Reps |
+| ---------- | ---- | ---- |
+| Warmup     | 55%  | 12   |
+| Top set    | 100% | 6–8  |
+| Back-off 1 | 70%  | 8–10 |
+| Back-off 2 | 70%  | 8–10 |
 
 **T3 — Isolation (3 sets):**
 
-| Set | % | Reps |
-| --- | --- | --- |
+| Set        | %              | Reps  |
+| ---------- | -------------- | ----- |
 | Activation | 75% of working | 12–15 |
-| Working 1 | 100% | 10–12 |
-| Working 2 | 100% | 10–12 |
+| Working 1  | 100%           | 10–12 |
+| Working 2  | 100%           | 10–12 |
 
 ## Program data
 
@@ -520,7 +540,7 @@ export const DAYS = [
         id: 'sardf',
         tier: 'T3',
         name: 'Single Arm Rear Delt Fly',
-        note: 'Pinch at peak contraction — don\'t rush',
+        note: "Pinch at peak contraction — don't rush",
       },
     ],
   },
@@ -676,14 +696,14 @@ export const DAYS = [
 
 Render this as a collapsible section at the bottom of the left panel on desktop, or at the bottom of the page on mobile. Label it "Rest periods".
 
-| After | Rest |
-| --- | --- |
-| Top set — T1 | 3 min |
-| Back-off sets | 2 min |
-| Top set — T2 | 2 min |
-| Isolation working sets | 90 sec |
-| Warmup / activation sets | 60–90 sec |
-| Bridge set | 90–120 sec |
+| After                    | Rest       |
+| ------------------------ | ---------- |
+| Top set — T1             | 3 min      |
+| Back-off sets            | 2 min      |
+| Top set — T2             | 2 min      |
+| Isolation working sets   | 90 sec     |
+| Warmup / activation sets | 60–90 sec  |
+| Bridge set               | 90–120 sec |
 
 ## Vercel deployment
 
@@ -698,9 +718,9 @@ This ensures Vercel serves `index.html` for all paths — required for any clien
 
 ```ts
 // vite.config.ts
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -710,7 +730,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-})
+});
 ```
 
 Do NOT use `css.preprocessorOptions.scss.additionalData` — `_variables.scss` defines CSS custom properties, not Sass variables, so it does not need to be globally injected. Import it once in `main.scss` instead.
@@ -769,11 +789,17 @@ Do NOT use `css.preprocessorOptions.scss.additionalData` — `_variables.scss` d
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Vita Ray — Operation Vita Ray workout plan and weight calculator" />
+    <meta
+      name="description"
+      content="Vita Ray — Operation Vita Ray workout plan and weight calculator"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <title>Vita Ray</title>
   </head>
   <body>
@@ -784,6 +810,255 @@ Do NOT use `css.preprocessorOptions.scss.additionalData` — `_variables.scss` d
 ```
 
 `data-theme="system"` is set on `<html>` as the initial value before React hydrates. `ThemeContext` reads from `localStorage` on mount and updates the attribute immediately — this prevents a flash of wrong theme on load.
+
+## Testing (Vitest)
+
+```bash
+yarn add -D vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @vitest/coverage-v8
+```
+
+```ts
+// vite.config.ts — add test block
+/// <reference types="vitest" />
+export default defineConfig({
+  plugins: [react()],
+  base: '/',
+  resolve: { alias: { '@': path.resolve(__dirname, './src') } },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'html'],
+      reportsDirectory: './coverage',
+      exclude: ['src/main.tsx', 'src/vite-env.d.ts', '**/*.config.*', 'src/test/**'],
+    },
+  },
+});
+```
+
+```ts
+// src/test/setup.ts
+import '@testing-library/jest-dom';
+```
+
+**Required test files** — one per unit, colocated as `*.test.ts(x)` next to the file under test:
+
+- `src/utils/weight.test.ts` — covers `roundWeight`, `calcSetWeight`, `convertWeight` for both lbs and kg, including zero/negative/undefined edge cases
+- `src/components/ExerciseCard.test.tsx` — renders, expands on click, updates set table on weight input
+- `src/components/SetTable.test.tsx` — renders correct rows per tier, shows "—" when no weight entered
+- `src/components/WeekStrip.test.tsx` — renders 7 days, rest days not clickable, active day highlighted
+- `src/components/ThemeToggle.test.tsx` — cycles system → light → dark, persists to localStorage
+- `src/components/UnitToggle.test.tsx` — switches unit, converts existing weight values
+- `src/context/ThemeContext.test.tsx` — defaults to system, reads/writes localStorage
+- `src/context/UnitContext.test.tsx` — defaults to lbs, reads/writes localStorage
+
+`package.json` scripts:
+
+```json
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -b --noEmit"
+  }
+}
+```
+
+## Prettier
+
+```bash
+yarn add -D prettier
+```
+
+```json
+// .prettierrc.json
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "endOfLine": "lf"
+}
+```
+
+```text
+// .prettierignore
+dist
+coverage
+node_modules
+.yarn
+```
+
+## ESLint
+
+```bash
+yarn add -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-config-prettier
+```
+
+```js
+// eslint.config.js (flat config — ESLint 9)
+import js from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+import prettier from 'eslint-config-prettier';
+
+export default tseslint.config(
+  { ignores: ['dist', 'coverage', 'node_modules'] },
+  js.configs.recommended,
+  ...tseslint.configs.strict,
+  {
+    files: ['**/*.{ts,tsx}'],
+    plugins: {
+      react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...react.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    },
+    settings: { react: { version: 'detect' } },
+  },
+  prettier
+);
+```
+
+`eslint-config-prettier` must be last in the config array — it disables all formatting rules so ESLint and Prettier never conflict.
+
+## Git hooks (Husky + lint-staged)
+
+```bash
+yarn add -D husky lint-staged
+yarn husky init
+```
+
+```json
+// package.json — add lint-staged block
+{
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix --max-warnings 0", "prettier --write"],
+    "*.{json,md,scss,html}": ["prettier --write"]
+  }
+}
+```
+
+```bash
+# .husky/pre-commit
+yarn lint-staged
+```
+
+```bash
+# .husky/pre-push
+yarn typecheck && yarn test
+```
+
+`husky init` creates `.husky/pre-commit` automatically with `yarn lint-staged` — verify it's there, then add `.husky/pre-push` manually for the typecheck + test gate.
+
+## SonarCloud
+
+```text
+// sonar-project.properties
+sonar.projectKey=<your-github-username>_vita-ray
+sonar.organization=<your-sonarcloud-org>
+sonar.sources=src
+sonar.tests=src
+sonar.test.inclusions=**/*.test.ts,**/*.test.tsx
+sonar.exclusions=**/*.test.ts,**/*.test.tsx,src/main.tsx,**/*.config.*
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+sonar.typescript.lcov.reportPaths=coverage/lcov.info
+sonar.sourceEncoding=UTF-8
+```
+
+Replace `<your-github-username>` and `<your-sonarcloud-org>` with actual values after creating the project on sonarcloud.io and linking the GitHub repo. `SONAR_TOKEN` is generated in SonarCloud account settings and stored as a CircleCI environment variable — never committed to the repo.
+
+## CircleCI
+
+```yaml
+# .circleci/config.yml
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2.0
+  sonarcloud: sonarsource/sonarcloud@2.0.0
+
+jobs:
+  lint-and-typecheck:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn lint
+      - run: yarn typecheck
+      - run: yarn format:check
+
+  test:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn test:coverage
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage
+
+  sonar-scan:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - sonarcloud/scan
+
+  build:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: corepack enable
+      - node/install-packages:
+          pkg-manager: yarn-berry
+      - run: yarn build
+
+workflows:
+  ci:
+    jobs:
+      - lint-and-typecheck
+      - test
+      - sonar-scan:
+          requires:
+            - test
+          context: SonarCloud
+      - build:
+          requires:
+            - lint-and-typecheck
+            - test
+```
+
+`SONAR_TOKEN` lives in a CircleCI context named `SonarCloud`, not as a plain project env var — keeps it scoped and reusable. Vercel handles deployment separately via its own GitHub integration (auto-deploy on push to `main`) — CircleCI does not deploy, it only gates quality. A failed CircleCI run does not block Vercel's deploy automatically; if you want that enforcement, set `main` branch protection on GitHub to require the CircleCI checks to pass before merge.
 
 ## Standing orders (do not violate)
 
@@ -808,3 +1083,8 @@ Do NOT use `css.preprocessorOptions.scss.additionalData` — `_variables.scss` d
 - All contexts consumed via their named hooks (`useTheme`, `useUnit`) — never `useContext` directly in components
 - No `any` types — strict TypeScript throughout
 - All utility functions in `src/utils/` — no business logic in components
+- Every new utility or component ships with a colocated `*.test.ts(x)` file
+- Code must pass `yarn lint`, `yarn typecheck`, and `yarn test` before commit — enforced via Husky pre-commit and pre-push hooks
+- Never commit `SONAR_TOKEN` or any secret — CircleCI context only
+- `eslint-config-prettier` must always be the last entry in `eslint.config.js`
+- No `console.log` left in committed code — use `console.warn`/`console.error` only where intentional
