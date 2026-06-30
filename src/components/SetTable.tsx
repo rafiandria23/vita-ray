@@ -45,7 +45,10 @@ export default function SetTable({ tier, topWeight }: Props) {
       </thead>
       <tbody>
         {sets.map((s) => (
-          <tr key={s.name} style={{ color: s.isTop ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}>
+          <tr
+            key={s.name}
+            style={{ color: s.isTop ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}
+          >
             <td className="py-1">{s.name}</td>
             <td
               className="text-right py-1 font-semibold"

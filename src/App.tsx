@@ -23,7 +23,9 @@ function RestPeriods() {
         className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-[var(--bg-card-hover)] transition-colors"
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="text-[var(--text-secondary)] text-[12px] uppercase tracking-wider">Rest periods</span>
+        <span className="text-[var(--text-secondary)] text-[12px] uppercase tracking-wider">
+          Rest periods
+        </span>
         <svg
           className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
           fill="none"
@@ -39,7 +41,10 @@ function RestPeriods() {
           <table className="w-full text-[13px] mt-2">
             <tbody>
               {REST_PERIODS.map((row) => (
-                <tr key={row.after} className="border-b border-[var(--bg-card-hover)] last:border-0">
+                <tr
+                  key={row.after}
+                  className="border-b border-[var(--bg-card-hover)] last:border-0"
+                >
                   <td className="py-1.5 text-[var(--text-secondary)]">{row.after}</td>
                   <td className="py-1.5 text-right text-[var(--text-muted)]">{row.rest}</td>
                 </tr>
@@ -62,8 +67,12 @@ export default function App() {
       <div className="lg:hidden px-4 pb-8">
         <header className="py-5 border-b border-[var(--border)] mb-4 flex items-end justify-between">
           <div>
-            <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest mb-0.5">Operation</p>
-            <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">Vita Ray</h1>
+            <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest mb-0.5">
+              Operation
+            </p>
+            <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">
+              Vita Ray
+            </h1>
           </div>
           <div className="flex items-center gap-3">
             <UnitToggle />
@@ -75,8 +84,12 @@ export default function App() {
         </div>
         {activeDay.type !== 'rest' && (
           <div className="mb-4">
-            <h2 className="font-display text-xl tracking-wider text-[var(--text-primary)] mb-0.5">{activeDay.label}</h2>
-            <p className="text-[var(--text-muted)] text-[12px]">{activeDay.duration} · {activeDay.muscles}</p>
+            <h2 className="font-display text-xl tracking-wider text-[var(--text-primary)] mb-0.5">
+              {activeDay.label}
+            </h2>
+            <p className="text-[var(--text-muted)] text-[12px]">
+              {activeDay.duration} · {activeDay.muscles}
+            </p>
           </div>
         )}
         <SessionView day={activeDay} />
@@ -90,18 +103,24 @@ export default function App() {
         <aside className="w-[320px] shrink-0 sticky top-0 h-screen overflow-y-auto py-8 flex flex-col gap-6">
           <header>
             <div className="flex items-start justify-between mb-1">
-              <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest">Operation</p>
+              <p className="text-[var(--text-muted)] text-[11px] uppercase tracking-widest">
+                Operation
+              </p>
               <div className="flex items-center gap-3">
                 <UnitToggle />
                 <ThemeToggle />
               </div>
             </div>
-            <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">Vita Ray</h1>
+            <h1 className="font-display text-3xl tracking-widest text-[var(--text-primary)]">
+              Vita Ray
+            </h1>
           </header>
           <WeekStrip days={DAYS} activeIndex={activeIndex} onSelect={setActiveIndex} />
           {activeDay.type !== 'rest' && (
             <div className="border-t border-[var(--border)] pt-4">
-              <h2 className="font-display text-xl tracking-wider text-[var(--text-primary)] mb-0.5">{activeDay.label}</h2>
+              <h2 className="font-display text-xl tracking-wider text-[var(--text-primary)] mb-0.5">
+                {activeDay.label}
+              </h2>
               <p className="text-[var(--text-muted)] text-[12px]">{activeDay.duration}</p>
               <p className="text-[var(--text-muted)] text-[12px]">{activeDay.muscles}</p>
             </div>

@@ -34,7 +34,10 @@ export default function WeekStrip({ days, activeIndex, onSelect }: Props) {
               }}
             >
               <span className="font-display tracking-wider text-[15px]">{day.short}</span>
-              <span className="text-[10px] mt-0.5" style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-muted)' }}>
+              <span
+                className="text-[10px] mt-0.5"
+                style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-muted)' }}
+              >
                 {day.type === 'rest' ? 'Rest' : day.label.split('—')[0].trim()}
               </span>
             </button>
@@ -65,7 +68,10 @@ export default function WeekStrip({ days, activeIndex, onSelect }: Props) {
                 {day.short}
               </span>
               <div className="flex-1 min-w-0">
-                <p className="text-[13px] truncate" style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}>
+                <p
+                  className="text-[13px] truncate"
+                  style={{ color: isActive ? 'var(--tier-t1-text)' : 'var(--text-secondary)' }}
+                >
                   {day.label}
                 </p>
                 {day.duration && (
