@@ -990,7 +990,7 @@ sonar.typescript.lcov.reportPaths=coverage/lcov.info
 sonar.sourceEncoding=UTF-8
 ```
 
-Replace `<your-github-username>` and `<your-sonarcloud-org>` with actual values after creating the project on sonarcloud.io and linking the GitHub repo. `SONAR_TOKEN` is generated in SonarCloud account settings and stored as a CircleCI environment variable — never committed to the repo.
+Replace `<your-github-username>` and `<your-sonarcloud-org>` with actual values after creating the project on sonarcloud.io and linking the GitHub repo. `SONAR_TOKEN` is generated in SonarCloud account settings and stored in a CircleCI context named `SonarCloud` — never committed to the repo, never set as a plain project env var.
 
 ## CircleCI
 
@@ -1008,7 +1008,6 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: corepack enable
       - node/install-packages:
           pkg-manager: yarn-berry
       - run: yarn lint
@@ -1020,7 +1019,6 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: corepack enable
       - node/install-packages:
           pkg-manager: yarn-berry
       - run: yarn test:coverage
@@ -1043,7 +1041,6 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: corepack enable
       - node/install-packages:
           pkg-manager: yarn-berry
       - run: yarn build
@@ -1063,7 +1060,11 @@ workflows:
             - test
 ```
 
-`SONAR_TOKEN` lives in a CircleCI context named `SonarCloud`, not as a plain project env var — keeps it scoped and reusable. Vercel handles deployment separately via its own GitHub integration (auto-deploy on push to `main`) — CircleCI does not deploy, it only gates quality. A failed CircleCI run does not block Vercel's deploy automatically; if you want that enforcement, set `main` branch protection on GitHub to require the CircleCI checks to pass before merge.
+`SONAR_TOKEN` lives in a CircleCI context named `SonarCloud` — must match exactly whatever name is set in CircleCI org settings. It is never set as a plain project environment variable, since contexts are scoped, auditable, and reusable across future projects.
+
+No `corepack enable` step appears in any job. The project uses a vendored Yarn binary (`yarnPath` in `.yarnrc.yml`, committed to the repo) rather than corepack, because Vercel does not officially support Yarn 4 via corepack. The `node/install-packages` orb step with `pkg-manager: yarn-berry` detects and uses the vendored binary automatically — corepack is not part of this pipeline anywhere, including locally.
+
+Vercel handles deployment separately via its own GitHub integration (auto-deploy on push to `main`) — CircleCI does not deploy, it only gates quality. A failed CircleCI run does not block Vercel's deploy automatically; if you want that enforcement, set `main` branch protection on GitHub to require the CircleCI checks to pass before merge.
 
 ## Standing orders (do not violate)
 
@@ -1082,7 +1083,7 @@ workflows:
 - Default theme on first load: system
 - Keep `program.ts` as the single source of truth for all workout data
 - Use Yarn only — never npm or npx
-- Corepack must be enabled before any yarn commands
+- Use the vendored Yarn binary via `yarnPath` in `.yarnrc.yml` — never corepack, anywhere, including CI
 - `nodeLinker: node-modules` must be set in `.yarnrc.yml`
 - Use `@/` path alias for all imports — never use relative `../../` paths
 - All contexts consumed via their named hooks (`useTheme`, `useUnit`) — never `useContext` directly in components
