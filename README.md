@@ -13,7 +13,6 @@ Personal workout plan app for Operation Vita Ray. Static React SPA — no backen
 ## Getting started
 
 ```bash
-corepack enable
 yarn install
 yarn dev
 ```
