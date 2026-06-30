@@ -10,16 +10,18 @@ Personal workout plan app for Operation Vita Ray. Static React app — no backen
 - Fonts: Bebas Neue (display) + Inter (body) via Google Fonts
 - Strict TypeScript — `strict: true` in tsconfig
 - Node.js: latest LTS — never pin to a specific outdated version
-- Package manager: Yarn (corepack enabled) — never use npm or npx
+- Package manager: Yarn 4 (vendored binary) — never use npm or npx
 
 ## Package manager setup
 
-Use Yarn with corepack. Initialize with:
+Use Yarn 4 with a vendored binary (required for Vercel compatibility — Vercel does not officially support Yarn 4 via corepack). Initialize with:
 
 ```bash
-corepack enable
 yarn init -2
+yarn set version 4.x.x
 ```
+
+This downloads the Yarn binary to `.yarn/releases/yarn-4.x.x.cjs` and sets `yarnPath` in `.yarnrc.yml`. Commit the binary — Vercel reads `yarnPath` and uses it directly, bypassing corepack entirely.
 
 `package.json` must include the `packageManager` field:
 
@@ -29,12 +31,15 @@ yarn init -2
 }
 ```
 
-Set `nodeLinker` to `node-modules` in `.yarnrc.yml` — required for Vite and Tailwind compatibility:
+`.yarnrc.yml` must have both `yarnPath` and `nodeLinker`:
 
 ```yaml
 # .yarnrc.yml
+yarnPath: .yarn/releases/yarn-4.x.x.cjs
 nodeLinker: node-modules
 ```
+
+`nodeLinker: node-modules` is required for Vite and Tailwind compatibility. `yarnPath` is required for Vercel.
 
 Pin the Node version via `.nvmrc` so local dev, CI, and Vercel all resolve the same LTS release:
 
