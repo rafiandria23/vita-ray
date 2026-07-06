@@ -4,8 +4,11 @@ const LBS_TO_KG = 0.453592;
 const KG_TO_LBS = 2.20462;
 
 export function roundWeight(n: number, unit: Unit): number {
-  if (unit === 'lbs') return Math.round(n / 5) * 5;
-  return Math.round(n / 2.5) * 2.5;
+  const step = unit === 'lbs' ? 5 : 2.5;
+  const rounded = Math.round(n / step) * step;
+  // A nonzero weight should never round down to 0 — floor it at one increment instead
+  if (n > 0 && rounded <= 0) return step;
+  return rounded;
 }
 
 export function calcSetWeight(topWeight: number, pct: number, unit: Unit): string {
