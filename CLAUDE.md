@@ -303,8 +303,11 @@ const LBS_TO_KG = 0.453592;
 const KG_TO_LBS = 2.20462;
 
 export function roundWeight(n: number, unit: Unit): number {
-  if (unit === 'lbs') return Math.round(n / 5) * 5;
-  return Math.round(n / 2.5) * 2.5;
+  const step = unit === 'lbs' ? 5 : 2.5;
+  const rounded = Math.round(n / step) * step;
+  // A nonzero weight should never round down to 0 — floor it at one increment instead
+  if (n > 0 && rounded <= 0) return step;
+  return rounded;
 }
 
 export function calcSetWeight(topWeight: number, pct: number, unit: Unit): string {
@@ -327,10 +330,12 @@ User enters their top set weight per exercise. App calculates all set weights au
 const LBS_TO_KG = 0.453592;
 const KG_TO_LBS = 2.20462;
 
-// Round to nearest 5 lbs or nearest 2.5 kg
+// Round to nearest 5 lbs or nearest 2.5 kg — never rounds a nonzero weight down to 0
 function roundWeight(n: number, unit: Unit): number {
-  if (unit === 'lbs') return Math.round(n / 5) * 5;
-  return Math.round(n / 2.5) * 2.5;
+  const step = unit === 'lbs' ? 5 : 2.5;
+  const rounded = Math.round(n / step) * step;
+  if (n > 0 && rounded <= 0) return step;
+  return rounded;
 }
 
 // Calculate set weight from top set
@@ -347,6 +352,7 @@ function calcSetWeight(topWeight: number, pct: number, unit: Unit): string {
 - When the user switches units, the top set input value converts automatically
 - Unit preference is stored in `localStorage` as `'lbs'` or `'kg'` — persists across reloads (exception to the no-persistence rule — unit preference is a display setting, not workout data)
 - Default unit on first load: lbs
+- Any nonzero calculated weight is floored at one increment (5 lbs / 2.5 kg) instead of rounding down to 0 — gym plates don't go to zero
 
 Top set weight is stored in React state (`useState`) per exercise. Workout data itself resets on reload — this is intentional.
 
@@ -653,11 +659,12 @@ export const DAYS = [
 - Collapsed by default
 - Tap header to expand
 - Expanded state shows: cue note, top set weight input, calculated set table
-- Input: number type, min=0, placeholder="0"
+- Input: number type, `inputMode="decimal"`, min=0, placeholder="0"
 - Input step: 5 when unit is lbs, 2.5 when unit is kg
 - Input label shows current unit (lbs or kg)
 - When unit switches, input value converts automatically
-- Set table recalculates on every input change — no submit button
+- Input rejects non-numeric and negative values — invalid entries show an error message below the input ("Enter a valid number" / "Weight cannot be negative") instead of updating the set table
+- Set table recalculates on every valid input change — no submit button
 - Top set row visually highlighted (accent color)
 - Chevron rotates 180deg when open
 
@@ -851,7 +858,7 @@ import '@testing-library/jest-dom';
 **Required test files** — one per unit, colocated as `*.test.ts(x)` next to the file under test:
 
 - `src/utils/weight.test.ts` — covers `roundWeight`, `calcSetWeight`, `convertWeight` for both lbs and kg, including zero/negative/undefined edge cases
-- `src/components/ExerciseCard.test.tsx` — renders, expands on click, updates set table on weight input
+- `src/components/ExerciseCard.test.tsx` — renders, expands on click, updates set table on weight input, shows error message on invalid/negative input and does not update the set table while invalid
 - `src/components/SetTable.test.tsx` — renders correct rows per tier, shows "—" when no weight entered
 - `src/components/WeekStrip.test.tsx` — renders 7 days, rest days not clickable, active day highlighted
 - `src/components/ThemeToggle.test.tsx` — cycles system → light → dark, persists to localStorage

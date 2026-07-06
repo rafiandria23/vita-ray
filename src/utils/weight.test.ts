@@ -13,6 +13,17 @@ describe('roundWeight', () => {
     expect(roundWeight(46.5, 'kg')).toBe(47.5);
     expect(roundWeight(47.5, 'kg')).toBe(47.5);
   });
+
+  it('floors a nonzero weight at one increment instead of rounding down to 0', () => {
+    expect(roundWeight(1.5, 'lbs')).toBe(5);
+    expect(roundWeight(2, 'lbs')).toBe(5);
+    expect(roundWeight(1, 'kg')).toBe(2.5);
+  });
+
+  it('keeps zero as zero', () => {
+    expect(roundWeight(0, 'lbs')).toBe(0);
+    expect(roundWeight(0, 'kg')).toBe(0);
+  });
 });
 
 describe('calcSetWeight', () => {
@@ -33,6 +44,11 @@ describe('calcSetWeight', () => {
   it('calculates kg set weight', () => {
     expect(calcSetWeight(100, 0.5, 'kg')).toBe('50 kg');
     expect(calcSetWeight(100, 0.75, 'kg')).toBe('75 kg');
+  });
+
+  it('never displays 0 for a very light but nonzero top weight', () => {
+    expect(calcSetWeight(2, 0.5, 'lbs')).toBe('5 lbs');
+    expect(calcSetWeight(1, 0.75, 'kg')).toBe('2.5 kg');
   });
 });
 
