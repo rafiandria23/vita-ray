@@ -72,11 +72,12 @@ export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise
                   return;
                 }
 
-                const parsed = Number.parseFloat(value);
-                if (!Number.isFinite(parsed) || /[^0-9.]/.test(value)) {
+                if (!/^-?\d+(\.\d+)?$/.test(value)) {
                   setError('Enter a valid number');
                   return;
                 }
+
+                const parsed = Number.parseFloat(value);
                 if (parsed < 0) {
                   setError('Weight cannot be negative');
                   return;
