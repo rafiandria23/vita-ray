@@ -8,13 +8,17 @@ import SetTable from '@/components/SetTable';
 export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise }>) {
   const [open, setOpen] = useState(false);
   const [topWeight, setTopWeight] = useState(0);
+  const [rawInput, setRawInput] = useState('');
+  const [error, setError] = useState('');
   const { unit } = useUnit();
 
   // Convert entered weight when unit switches
   const [prevUnit, setPrevUnit] = useState(unit);
   useEffect(() => {
     if (unit !== prevUnit && topWeight > 0) {
-      setTopWeight(convertWeight(topWeight, prevUnit, unit)); // eslint-disable-line react-hooks/set-state-in-effect
+      const converted = convertWeight(topWeight, prevUnit, unit);
+      setTopWeight(converted); // eslint-disable-line react-hooks/set-state-in-effect
+      setRawInput(String(converted));
     }
     setPrevUnit(unit);
   }, [unit]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -53,13 +57,38 @@ export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise
             </span>
             <input
               type="number"
+              inputMode="decimal"
               step={step}
               min={0}
               placeholder="0"
-              value={topWeight || ''}
-              onChange={(e) => setTopWeight(Number(e.target.value))}
+              value={rawInput}
+              onChange={(e) => {
+                const value = e.target.value;
+                setRawInput(value);
+
+                if (value === '') {
+                  setError('');
+                  setTopWeight(0);
+                  return;
+                }
+
+                const parsed = Number.parseFloat(value);
+                if (!Number.isFinite(parsed) || /[^0-9.]/.test(value)) {
+                  setError('Enter a valid number');
+                  return;
+                }
+                if (parsed < 0) {
+                  setError('Weight cannot be negative');
+                  return;
+                }
+
+                setError('');
+                setTopWeight(parsed);
+              }}
+              aria-invalid={error !== ''}
               className="w-full bg-[var(--bg-page)] border border-[var(--border)] rounded px-3 py-2 text-[var(--text-primary)] text-[14px] focus:outline-none focus:border-[var(--text-muted)]"
             />
+            {error && <p className="text-red-500 text-[12px] mt-1">{error}</p>}
           </label>
           <SetTable tier={exercise.tier} topWeight={topWeight} />
         </div>

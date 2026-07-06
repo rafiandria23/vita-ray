@@ -653,11 +653,12 @@ export const DAYS = [
 - Collapsed by default
 - Tap header to expand
 - Expanded state shows: cue note, top set weight input, calculated set table
-- Input: number type, min=0, placeholder="0"
+- Input: number type, `inputMode="decimal"`, min=0, placeholder="0"
 - Input step: 5 when unit is lbs, 2.5 when unit is kg
 - Input label shows current unit (lbs or kg)
 - When unit switches, input value converts automatically
-- Set table recalculates on every input change — no submit button
+- Input rejects non-numeric and negative values — invalid entries show an error message below the input ("Enter a valid number" / "Weight cannot be negative") instead of updating the set table
+- Set table recalculates on every valid input change — no submit button
 - Top set row visually highlighted (accent color)
 - Chevron rotates 180deg when open
 
@@ -851,7 +852,7 @@ import '@testing-library/jest-dom';
 **Required test files** — one per unit, colocated as `*.test.ts(x)` next to the file under test:
 
 - `src/utils/weight.test.ts` — covers `roundWeight`, `calcSetWeight`, `convertWeight` for both lbs and kg, including zero/negative/undefined edge cases
-- `src/components/ExerciseCard.test.tsx` — renders, expands on click, updates set table on weight input
+- `src/components/ExerciseCard.test.tsx` — renders, expands on click, updates set table on weight input, shows error message on invalid/negative input and does not update the set table while invalid
 - `src/components/SetTable.test.tsx` — renders correct rows per tier, shows "—" when no weight entered
 - `src/components/WeekStrip.test.tsx` — renders 7 days, rest days not clickable, active day highlighted
 - `src/components/ThemeToggle.test.tsx` — cycles system → light → dark, persists to localStorage
