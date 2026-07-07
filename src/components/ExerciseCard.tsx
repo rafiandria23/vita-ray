@@ -87,7 +87,7 @@ export default function ExerciseCard({ exercise }: Readonly<{ exercise: Exercise
                 setTopWeight(parsed);
               }}
               aria-invalid={error !== ''}
-              className="w-full bg-[var(--bg-page)] border border-[var(--border)] rounded px-3 py-2 text-[var(--text-primary)] text-[14px] focus:outline-none focus:border-[var(--text-muted)]"
+              className="w-full bg-[var(--bg-page)] border border-[var(--border)] rounded px-3 py-2 text-[var(--text-primary)] text-base focus:outline-none focus:border-[var(--text-muted)]"
             />
             {error && <p className="text-red-500 text-[12px] mt-1">{error}</p>}
           </label>
