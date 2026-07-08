@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DAYS, getDefaultDayIndex } from '@/data/program';
+import { DAYS, getDefaultDayIndex, getTodayIndex, getNextTrainingIndex } from '@/data/program';
 import WeekStrip from '@/components/WeekStrip';
 import SessionView from '@/components/SessionView';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -60,6 +60,10 @@ function RestPeriods() {
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(getDefaultDayIndex);
   const activeDay = DAYS[activeIndex];
+  const todayIndex = getTodayIndex();
+  const isToday = activeIndex === todayIndex;
+  const nextTrainingIndex = getNextTrainingIndex(activeIndex);
+  const nextDay = DAYS[nextTrainingIndex];
 
   return (
     <div className="min-h-screen bg-[var(--bg-page)]">
@@ -92,7 +96,14 @@ export default function App() {
             </p>
           </div>
         )}
-        <SessionView day={activeDay} />
+        <SessionView
+          day={activeDay}
+          isToday={isToday}
+          nextDay={activeDay.type === 'rest' ? nextDay : undefined}
+          onSelectNext={
+            activeDay.type === 'rest' ? () => setActiveIndex(nextTrainingIndex) : undefined
+          }
+        />
         <div className="mt-6">
           <RestPeriods />
         </div>
@@ -131,7 +142,14 @@ export default function App() {
         </aside>
 
         <main className="flex-1 py-8 min-w-0">
-          <SessionView day={activeDay} />
+          <SessionView
+            day={activeDay}
+            isToday={isToday}
+            nextDay={activeDay.type === 'rest' ? nextDay : undefined}
+            onSelectNext={
+              activeDay.type === 'rest' ? () => setActiveIndex(nextTrainingIndex) : undefined
+            }
+          />
         </main>
       </div>
     </div>
