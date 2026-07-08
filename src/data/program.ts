@@ -215,10 +215,10 @@ export function getTodayIndex(): number {
   return JS_DAY_TO_INDEX[new Date().getDay()] ?? 1;
 }
 
-export function getNextTrainingIndex(fromIndex: number): number {
-  for (let i = 1; i <= DAYS.length; i++) {
-    const next = (fromIndex + i) % DAYS.length;
-    if (DAYS[next].type !== 'rest') return next;
+export function getNextTrainingIndex(fromIndex: number, days: TrainingDay[] = DAYS): number {
+  for (let i = 1; i <= days.length; i++) {
+    const next = (fromIndex + i) % days.length;
+    if (days[next].type !== 'rest') return next;
   }
   return 1;
 }

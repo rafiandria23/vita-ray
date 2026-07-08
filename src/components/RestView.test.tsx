@@ -3,9 +3,11 @@ import { userEvent } from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import RestView from './RestView';
 import { DAYS } from '@/data/program';
+import type { TrainingDay } from '@/data/types';
 
 const restDay = DAYS[0]; // Mon — rest
 const nextDay = DAYS[1]; // Tue — Push Arms
+const unknownTypeDay: TrainingDay = { id: 'x', short: 'X', label: 'Unknown', type: 'rest' };
 
 describe('RestView — isToday=true', () => {
   it('renders rest day heading and today label', () => {
@@ -24,6 +26,14 @@ describe('RestView — isToday=true', () => {
     expect(screen.getByText('Next session')).toBeInTheDocument();
     expect(screen.getByText(nextDay.label)).toBeInTheDocument();
     expect(screen.getByText(nextDay.short)).toBeInTheDocument();
+  });
+
+  it('falls back to primary text color when nextDay type has no mapped color', () => {
+    render(
+      <RestView day={restDay} isToday={true} nextDay={unknownTypeDay} onSelectNext={() => {}} />
+    );
+    const label = screen.getByText(unknownTypeDay.label);
+    expect(label).toHaveStyle({ color: 'var(--text-primary)' });
   });
 
   it('does not show next session card when nextDay is absent', () => {
