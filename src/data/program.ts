@@ -208,6 +208,17 @@ const JS_DAY_TO_INDEX: Record<number, number> = {
 };
 
 export function getDefaultDayIndex(): number {
-  const idx = JS_DAY_TO_INDEX[new Date().getDay()] ?? 1;
-  return DAYS[idx].type === 'rest' ? 1 : idx;
+  return JS_DAY_TO_INDEX[new Date().getDay()] ?? 1;
+}
+
+export function getTodayIndex(): number {
+  return JS_DAY_TO_INDEX[new Date().getDay()] ?? 1;
+}
+
+export function getNextTrainingIndex(fromIndex: number): number {
+  for (let i = 1; i <= DAYS.length; i++) {
+    const next = (fromIndex + i) % DAYS.length;
+    if (DAYS[next].type !== 'rest') return next;
+  }
+  return 1;
 }
