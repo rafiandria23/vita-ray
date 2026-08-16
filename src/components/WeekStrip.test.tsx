@@ -18,11 +18,19 @@ describe('WeekStrip', () => {
     buttons.forEach((btn) => expect(btn).toBeDisabled());
   });
 
-  it('calls onSelect when non-rest day is clicked', async () => {
+  it('calls onSelect when non-rest day is clicked (mobile strip)', async () => {
     const onSelect = vi.fn();
     render(<WeekStrip days={DAYS} activeIndex={1} onSelect={onSelect} />);
     const tueButtons = screen.getAllByRole('button', { name: /Tue/i });
     await userEvent.click(tueButtons[0]);
+    expect(onSelect).toHaveBeenCalledWith(1);
+  });
+
+  it('calls onSelect when non-rest day is clicked (desktop list)', async () => {
+    const onSelect = vi.fn();
+    render(<WeekStrip days={DAYS} activeIndex={1} onSelect={onSelect} />);
+    const tueButtons = screen.getAllByRole('button', { name: /Tue/i });
+    await userEvent.click(tueButtons[1]);
     expect(onSelect).toHaveBeenCalledWith(1);
   });
 });

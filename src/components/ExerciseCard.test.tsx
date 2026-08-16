@@ -13,6 +13,13 @@ const exercise: Exercise = {
   note: 'Anchor of session',
 };
 
+const t3Exercise: Exercise = {
+  id: 'test-t3-exercise',
+  tier: 'T3',
+  name: 'Tricep Pushdown',
+  note: 'Elbows pinned',
+};
+
 function Wrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   return <UnitProvider>{children}</UnitProvider>;
 }
@@ -94,5 +101,11 @@ describe('ExerciseCard', () => {
     await userEvent.type(input, '200');
     await userEvent.click(screen.getByRole('button', { name: 'kg' }));
     expect(input).toHaveValue(90);
+  });
+
+  it('shows "Working weight" label for T3 exercises', async () => {
+    render(<ExerciseCard exercise={t3Exercise} />, { wrapper: Wrapper });
+    await userEvent.click(screen.getByRole('button', { name: /Tricep Pushdown/i }));
+    expect(screen.getByText(/^Working weight \(/)).toBeInTheDocument();
   });
 });
