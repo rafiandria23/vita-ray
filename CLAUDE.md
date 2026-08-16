@@ -1006,8 +1006,8 @@ Replace `<your-github-username>` and `<your-sonarcloud-org>` with actual values 
 version: 2.1
 
 orbs:
-  node: circleci/node@5.2.0
-  sonarcloud: sonarsource/sonarcloud@2.0.0
+  node: circleci/node@7.2.1
+  sonarcloud: sonarsource/sonarcloud@4.0.0
 
 jobs:
   lint-and-typecheck:
