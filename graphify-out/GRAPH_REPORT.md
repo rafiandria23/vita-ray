@@ -1,17 +1,17 @@
 # Graph Report - vita-ray  (2026-11-21)
 
 ## Corpus Check
-- 50 files · ~82,585 words
+- 50 files · ~82,380 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 12 file(s) not represented in the graph (top: (none) 6, .scss 4, .gz 1)
 
 ## Summary
-- 3802 nodes · 9622 edges · 276 communities (214 shown, 62 thin omitted)
+- 3800 nodes · 9620 edges · 290 communities (226 shown, 64 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 1064 edges (avg confidence: 0.85)
 - Token cost: 217,213 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fa358e55`
+- Built from commit: `df29fdac`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,9 +31,9 @@
 - Node tsconfig
 - lj
 - Prettier Settings
-- b
+- za
 - Kk
-- Ut
+- b
 - Favicon Artwork
 - emit
 - Wr
@@ -41,16 +41,16 @@
 - mapToBase
 - constructor
 - getCandidates
-- x
+- K6e
 - KVe
 - Vite Env Types
 - Vercel Rewrites
 - B9e
 - Bw
-- oc
-- v
-- Nl
+- make
 - hc
+- Ol
+- pa
 - _getEntry
 - Gt
 - jit
@@ -61,49 +61,49 @@
 - .write
 - s
 - Rr
-- ne
+- getSession
 - Ln
-- an
-- openPromise
+- cxe
+- Yo
 - maxAge
 - alert
 - c
 - V
 - bn
 - us
-- p
+- n
 - Uh
 - render
 - writeFileSync
 - reportInfo
 - a8e
-- Hr
+- cX
 - fm
-- Bi
+- toJSON
 - yl
-- Vr
+- v
 - ExerciseCard.test.tsx
-- Dn
-- Vl
-- chmodSync
+- cM
+- Ut
+- _x
 - jy
 - run
-- Ade
+- c3e
 - renderChoice
 - tNe
-- copySync
-- sFe
+- makeCallSync
+- Hr
 - lM
 - tke
 - vqe
-- E
+- r
 - getFileSource
 - zA
-- Ff
+- u0
 - _filter
 - zme
 - renovate.json
-- Gh
+- resolveFilename
 - CF
 - u4e
 - mme
@@ -111,7 +111,7 @@
 - eOe
 - txe
 - fromJSON
-- makeCallback
+- .pipe
 - _makeRequest
 - i1e
 - nD
@@ -121,7 +121,7 @@
 - verify
 - find
 - Ia
-- jh
+- ace
 - fetchPackageFromCache
 - isDisabled
 - n2t
@@ -131,21 +131,21 @@
 - Tp
 - zje
 - Fp
-- Hpe
+- aI
 - setTimeout
-- u0
-- .on
-- o2
+- crt
+- Ch
+- BP
 - makeBound
 - lOe
-- load
+- fn
 - s9
 - refresh
 - once
 - fmt
 - hG
 - findExtension
-- responseHeaders
+- L1
 - installPackage
 - isUniversal
 - aF
@@ -154,10 +154,10 @@
 - C7e
 - hd
 - DL
-- Ame
+- c0
 - t3
 - reportValue
-- gpe
+- xI
 - ensureCapacity
 - uBt
 - Egt
@@ -169,11 +169,11 @@
 - makeInterval
 - aQ
 - aSt
-- Ste
+- an
 - checkFinalSnapsnot
 - Kae
 - eo
-- delete
+- get
 - W0e
 - BB
 - rCt
@@ -183,7 +183,7 @@
 - BGe
 - lve
 - getTypes
-- dx
+- x
 - dBt
 - forgetTransientResolutions
 - ov
@@ -202,14 +202,14 @@
 - create
 - lvt
 - h7e
-- lstatPromise
+- getBufferAndClose
 - generateTargetPath
 - gvt
 - jBe
 - e3
 - encodeBody
 - eSt
-- _fillStorage
+- a4e
 - fve
 - fvt
 - getBlock
@@ -221,22 +221,22 @@
 - uve
 - p0t
 - reportHit
-- mE
+- jze
 - splice
 - patchConsole
 - Q0t
 - yCt
 - UU
 - _2
-- warn
+- startSectionPromise
 - hM
 - aee
 - attachExternalDependents
 - aye
 - B8e
-- toChoices
+- a
 - buffer
-- exit
+- callRuntimeCallbacks
 - captureString
 - CIt
 - supports
@@ -247,10 +247,13 @@
 - ewt
 - exitCode
 - f1t
+- JA
 - findSequenceMember
 - fUe
+- XU
 - G6e
 - genCommitMessage
+- .write
 - getWorkspaceByFilePath
 - kU
 - hOe
@@ -266,13 +269,16 @@
 - list
 - T2e
 - makeOverloader
+- jje
 - mve
 - r0t
 - __nbind_register_function
 - nGe
+- Mj
 - pop64
 - push
 - push64
+- c0t
 - r2t
 - readAsciiString
 - rle
@@ -289,6 +295,14 @@
 - EAe
 - equals
 - L0e
+- c
+- prev
+- executeInteractive
+- limitOpenFiles
+- Got
+- vst
+- kB
+- Omt
 
 ## God Nodes (most connected - your core abstractions)
 1. `s()` - 134 edges
@@ -325,7 +339,7 @@
 - **Persisted Display Settings (theme + unit via context, hook, localStorage)** — claude_themecontext_spec, claude_unitcontext_spec, claude_usetheme_hook, claude_useunit_hook, claude_theme_system [INFERRED 0.85]
 - **Weight Calculation Flow (tier sets from top set weight)** — claude_exercisecard_spec, claude_settable_spec, claude_tier_percentages, claude_weight_utility, claude_unit_conversion_rules [INFERRED 0.85]
 
-## Communities (276 total, 62 thin omitted)
+## Communities (290 total, 64 thin omitted)
 
 ### Community 0 - "Component Tests & Theme Toggle"
 Cohesion: 0.13
@@ -337,7 +351,7 @@ Nodes (26): CircleCI Pipeline, ESLint Flat Config (ESLint 9), Git Hooks (Husky +
 
 ### Community 2 - "CircleCI Pipeline Config"
 Cohesion: 0.06
-Nodes (39): at, docker, requires, steps, jobs, commands, install-deps, image (+31 more)
+Nodes (37): at, docker, requires, steps, jobs, commands, install-deps, image (+29 more)
 
 ### Community 3 - "App Shell & Session Views"
 Cohesion: 0.14
@@ -356,8 +370,8 @@ Cohesion: 0.10
 Nodes (20): compilerOptions, allowImportingTsExtensions, baseUrl, isolatedModules, jsx, lib, module, moduleResolution (+12 more)
 
 ### Community 8 - "setTimeout"
-Cohesion: 0.08
-Nodes (32): abort(), abortOnCannotGrowMemory(), allocate(), assert(), demangle(), demangleAll(), _emscripten_get_now(), _emscripten_set_main_loop() (+24 more)
+Cohesion: 0.07
+Nodes (35): abort(), abortOnCannotGrowMemory(), allocate(), assert(), demangle(), demangleAll(), enlargeMemory(), [g6]() (+27 more)
 
 ### Community 9 - "package.json"
 Cohesion: 0.04
@@ -365,7 +379,7 @@ Nodes (63): description, devDependencies, autoprefixer@^10.4.20, eslint@^10.6.0,
 
 ### Community 10 - "Q6e"
 Cohesion: 0.10
-Nodes (46): mt(), Q6e(), Bf(), bh(), Bt(), Dh(), du(), Ea() (+38 more)
+Nodes (49): Mg(), p2(), Po(), Q6e(), as(), Bf(), bh(), Bt() (+41 more)
 
 ### Community 11 - "npm Scripts"
 Cohesion: 0.15
@@ -381,23 +395,23 @@ Nodes (9): compilerOptions, allowSyntheticDefaultImports, composite, module, mod
 
 ### Community 14 - "lj"
 Cohesion: 0.07
-Nodes (37): activatePlugin(), cze(), DB(), dI(), dOe(), F8(), FQ(), GB() (+29 more)
+Nodes (28): Bi(), DB(), dOe(), GB(), getLimit(), getSpecial(), getSubprocessStreams(), gI() (+20 more)
 
 ### Community 15 - "Prettier Settings"
 Cohesion: 0.29
 Nodes (6): endOfLine, printWidth, semi, singleQuote, tabWidth, trailingComma
 
-### Community 16 - "b"
-Cohesion: 0.14
-Nodes (25): a7e(), Ac(), Hy(), il(), $l(), ma(), Nn(), Np() (+17 more)
+### Community 16 - "za"
+Cohesion: 0.09
+Nodes (23): a7e(), Ac(), Dh(), Ee(), [Hc](), Hy(), [lR](), Ly() (+15 more)
 
 ### Community 17 - "Kk"
 Cohesion: 0.19
-Nodes (13): Ad(), C4(), eLe(), fd(), KE(), Kk(), OKe(), pd() (+5 more)
+Nodes (14): Ad(), C4(), eLe(), fd(), KE(), Kk(), OKe(), pd() (+6 more)
 
-### Community 18 - "Ut"
-Cohesion: 0.09
-Nodes (56): $1(), Ao(), Bat(), bh(), bs(), componentDidCatch(), d2(), df() (+48 more)
+### Community 18 - "b"
+Cohesion: 0.12
+Nodes (47): $1(), _6e(), B2(), bs(), d2(), df(), e2(), Ea() (+39 more)
 
 ### Community 19 - "Favicon Artwork"
 Cohesion: 0.67
@@ -405,255 +419,255 @@ Nodes (3): Vita Ray Favicon (lightning bolt app icon), Dark Rounded Square Backg
 
 ### Community 20 - "emit"
 Cohesion: 0.07
-Nodes (27): [Ah](), [aR](), [ehe](), emit(), [HI](), [Kj](), [kN](), [LBe]() (+19 more)
+Nodes (28): [Ah](), [aR](), destroy(), [ehe](), emit(), [HI](), [Kj](), [kN]() (+20 more)
 
 ### Community 21 - "Wr"
-Cohesion: 0.08
-Nodes (59): a$(), aqe(), c_(), cqe(), DE(), dM(), eqe(), Er() (+51 more)
+Cohesion: 0.12
+Nodes (40): a$(), aqe(), c_(), DE(), dM(), eqe(), Er(), f$() (+32 more)
 
 ### Community 22 - "execute"
-Cohesion: 0.08
-Nodes (27): BL(), D5(), Dot(), dSt(), execute(), executeInteractive(), executeProxy(), executeStandard() (+19 more)
+Cohesion: 0.09
+Nodes (23): BL(), D5(), Dot(), dSt(), execute(), executeProxy(), executeRegular(), executeUpRecursive() (+15 more)
 
 ### Community 23 - "mapToBase"
 Cohesion: 0.15
-Nodes (34): accessPromise(), accessSync(), copyFilePromise(), copyFileSync(), d6e(), existsPromise(), existsSync(), findMount() (+26 more)
+Nodes (33): accessPromise(), accessSync(), chmodPromise(), chownPromise(), chownSync(), copyFilePromise(), d6e(), existsPromise() (+25 more)
 
 ### Community 24 - "constructor"
 Cohesion: 0.06
-Nodes (36): applyChanges(), c1t(), _checkIterableAdaptar(), clear(), componentWillUnmount(), constructor(), cursorHide(), cursorShow() (+28 more)
+Nodes (37): applyChanges(), c1t(), _checkIterableAdaptar(), clear(), componentWillUnmount(), constructor(), cursorHide(), cursorShow() (+29 more)
 
 ### Community 25 - "getCandidates"
-Cohesion: 0.12
-Nodes (20): bindDescriptor(), bJ(), fetchFromDisk(), generatePackage(), getCandidates(), getResolutionDependencies(), getResolverByDescriptor(), getSatisfying() (+12 more)
+Cohesion: 0.07
+Nodes (34): _5(), bindDescriptor(), bJ(), cloneFromRemote(), Fae(), fetchFromDisk(), generatePackage(), getCandidates() (+26 more)
 
-### Community 26 - "x"
-Cohesion: 0.06
-Nodes (33): ace(), U(), x(), Art(), De(), b0(), dae(), Fit() (+25 more)
+### Community 26 - "K6e"
+Cohesion: 0.21
+Nodes (10): b0(), K6e(), be(), d(), Fe(), it(), ke(), tt() (+2 more)
 
 ### Community 27 - "KVe"
-Cohesion: 0.11
-Nodes (25): addWorkspace(), anchoredPackage(), _B(), [_d](), ece(), fE(), G0(), $i() (+17 more)
+Cohesion: 0.08
+Nodes (35): addWorkspace(), anchoredPackage(), _B(), vs(), check(), [_d](), ece(), fE() (+27 more)
 
 ### Community 31 - "B9e"
-Cohesion: 0.14
-Nodes (32): B9e(), _A(), Ac(), at(), da(), dc(), $e(), fc() (+24 more)
+Cohesion: 0.10
+Nodes (37): B9e(), _A(), Ac(), at(), da(), dc(), $e(), fc() (+29 more)
 
 ### Community 32 - "Bw"
 Cohesion: 0.08
-Nodes (28): B9(), Bdt(), Bw(), Cdt(), Cgt(), Ddt(), Edt(), fetchFromNetwork() (+20 more)
+Nodes (29): B9(), Bdt(), Bw(), Cdt(), Cgt(), Ddt(), Edt(), fetchFromNetwork() (+21 more)
 
-### Community 33 - "oc"
-Cohesion: 0.07
-Nodes (30): adjascentGlobstarOptimize(), braceExpand(), commitBuffer(), concat(), cyt(), debug(), dV(), e0t() (+22 more)
+### Community 33 - "make"
+Cohesion: 0.16
+Nodes (15): adjascentGlobstarOptimize(), braceExpand(), debug(), firstPhasePreProcess(), levelOneOptimize(), levelTwoFileOptimize(), make(), match() (+7 more)
 
-### Community 34 - "v"
-Cohesion: 0.13
-Nodes (28): Bu(), [cA](), CP(), da(), exportTo(), fHe(), gP(), Gy() (+20 more)
+### Community 34 - "hc"
+Cohesion: 0.11
+Nodes (30): hc(), compile(), CP(), cqe(), Do(), FA(), at(), is() (+22 more)
 
-### Community 35 - "Nl"
-Cohesion: 0.08
-Nodes (43): Gi(), Ka(), Li(), Ya(), Bt(), C2(), cRe(), Ds() (+35 more)
+### Community 35 - "Ol"
+Cohesion: 0.10
+Nodes (32): Gi(), Li(), bf(), Bt(), cRe(), dU(), eh(), evt() (+24 more)
 
-### Community 36 - "hc"
-Cohesion: 0.17
-Nodes (20): au(), hc(), co(), Do(), FA(), at(), is(), mh() (+12 more)
+### Community 36 - "pa"
+Cohesion: 0.40
+Nodes (4): vi(), OA(), pa(), Ll()
 
 ### Community 37 - "_getEntry"
 Cohesion: 0.40
 Nodes (5): _getEntry(), _getFullEntryPath(), _getStat(), _makeEntry(), static()
 
 ### Community 38 - "Gt"
-Cohesion: 0.11
-Nodes (30): aI(), cacheCleanup(), cI(), fetchEverything(), generateLockfile(), getWorkspaceByLocator(), Gt(), HB() (+22 more)
+Cohesion: 0.10
+Nodes (28): Ade(), cacheCleanup(), fde(), fetchEverything(), generateLockfile(), Gt(), HB(), I0() (+20 more)
 
 ### Community 39 - "jit"
-Cohesion: 0.10
-Nodes (28): As(), Bd(), C8(), commitTips(), computeCandidateName(), crt(), FB(), fze() (+20 more)
+Cohesion: 0.14
+Nodes (18): As(), Bd(), computeCandidateName(), fze(), Hht(), jht(), jit(), MB() (+10 more)
 
 ### Community 40 - "validateAndExecute"
-Cohesion: 0.40
-Nodes (5): K2(), L0(), Lx(), validateAndExecute(), zLe()
+Cohesion: 0.22
+Nodes (9): eFe(), Ff(), K2(), L0(), Lx(), validateAndExecute(), wqe(), zLe() (+1 more)
 
 ### Community 41 - "r"
-Cohesion: 0.04
-Nodes (51): $9e(), addOrCreate(), B0t(), Bst(), cD(), command(), commands(), createConnection() (+43 more)
+Cohesion: 0.07
+Nodes (27): Bst(), [dhe](), fetchNextAnswer(), getIdentityToken(), getToken(), hgt(), [hhe](), jC() (+19 more)
 
 ### Community 42 - "qn"
-Cohesion: 0.07
-Nodes (24): _8e(), Aa(), C(), fu(), Va(), cc(), G2e(), GW() (+16 more)
+Cohesion: 0.10
+Nodes (16): collect(), _dump(), G2e(), GW(), K0t(), mFe(), on(), promise() (+8 more)
 
 ### Community 43 - "Nr"
-Cohesion: 0.18
-Nodes (28): _5e(), BE(), bx(), cs(), cte(), Ete(), F5e(), fl() (+20 more)
+Cohesion: 0.10
+Nodes (40): _5e(), BE(), BM(), bx(), cs(), cte(), cUe(), dx() (+32 more)
 
 ### Community 44 - ".write"
-Cohesion: 0.09
-Nodes (24): a0t(), add(), [b6](), [bv](), [D6](), [E6](), end(), flush() (+16 more)
+Cohesion: 0.08
+Nodes (25): a0t(), add(), [b6](), [bv](), [D6](), [E6](), end(), flush() (+17 more)
 
 ### Community 45 - "s"
-Cohesion: 0.04
-Nodes (66): a6e(), ask(), bit(), bot(), c0t(), c6e(), copyPromise(), _createCacheableRequest() (+58 more)
+Cohesion: 0.07
+Nodes (34): a6e(), c6e(), copyPromise(), _createCacheableRequest(), dynamic(), e5e(), Ew(), f6e() (+26 more)
 
 ### Community 46 - "Rr"
-Cohesion: 0.08
-Nodes (27): _3e(), d3e(), dFe(), e8e(), gFe(), gTe(), h3e(), hFe() (+19 more)
+Cohesion: 0.09
+Nodes (23): d3e(), dFe(), gFe(), gTe(), h3e(), hFe(), hTe(), i_e() (+15 more)
 
-### Community 47 - "ne"
-Cohesion: 0.15
-Nodes (10): DT(), Ee(), [Hc](), Hdt(), [lR](), Ly(), Os(), Tl() (+2 more)
+### Community 47 - "getSession"
+Cohesion: 0.12
+Nodes (13): Art(), De(), dae(), DT(), _Ge(), getSession(), Hdt(), normalizeOptions() (+5 more)
 
 ### Community 48 - "Ln"
 Cohesion: 0.09
 Nodes (5): _0(), cWe(), Ln(), lWe(), uWe()
 
-### Community 49 - "an"
-Cohesion: 0.10
-Nodes (22): an(), AXe(), B3e(), Bxe(), c3e(), cxe(), dqe(), dre() (+14 more)
-
-### Community 50 - "openPromise"
+### Community 49 - "cxe"
 Cohesion: 0.22
-Nodes (13): checksumFilePromise(), closePromise(), closeSync(), createReadStream(), createWriteStream(), lockPromise(), openPromise(), openSync() (+5 more)
+Nodes (9): AXe(), Bxe(), cxe(), fXe(), iz(), lxe(), uXe(), wQ() (+1 more)
+
+### Community 50 - "Yo"
+Cohesion: 0.12
+Nodes (27): checksumFilePromise(), closePromise(), closeSync(), createReadStream(), createWriteStream(), fchmodPromise(), fchmodSync(), fchownPromise() (+19 more)
 
 ### Community 51 - "maxAge"
-Cohesion: 0.21
-Nodes (13): _assertRequestHasHeaders(), date(), g$e(), im(), maxAge(), oH(), revalidatedPolicy(), satisfiesWithoutRevalidation() (+5 more)
+Cohesion: 0.12
+Nodes (24): AGe(), _ageValue(), _allowsStoringAuthenticated(), _assertRequestHasHeaders(), _copyWithoutHopByHopHeaders(), date(), g$e(), _hasExplicitExpiration() (+16 more)
 
 ### Community 52 - "alert"
-Cohesion: 0.19
-Nodes (20): alert(), append(), backward(), cutForward(), cutLeft(), disable(), dispatch(), forward() (+12 more)
+Cohesion: 0.16
+Nodes (24): alert(), append(), backward(), complete(), cutForward(), cutLeft(), delete(), deleteForward() (+16 more)
 
 ### Community 53 - "c"
-Cohesion: 0.15
-Nodes (13): bf(), c(), Dh(), En(), Eu(), MS(), My(), nj() (+5 more)
+Cohesion: 0.11
+Nodes (16): au(), c(), Dy(), Et(), Gy(), HL(), jL(), $l() (+8 more)
 
 ### Community 54 - "V"
-Cohesion: 0.23
-Nodes (27): BP(), ga(), hP(), If(), In(), jA(), kh(), Mo() (+19 more)
+Cohesion: 0.20
+Nodes (31): fo(), hP(), If(), In(), jA(), kh(), Mo(), Ro() (+23 more)
 
 ### Community 55 - "bn"
 Cohesion: 0.10
-Nodes (25): a0(), are(), bn(), br(), d4e(), FPe(), g4e(), h4e() (+17 more)
+Nodes (24): a0(), are(), bn(), br(), d4e(), FPe(), g4e(), h4e() (+16 more)
 
 ### Community 56 - "us"
-Cohesion: 0.13
-Nodes (17): Al(), AP(), bpe(), ere(), findFolderRcFile(), findRcFiles(), k9e(), Mj() (+9 more)
+Cohesion: 0.28
+Nodes (9): Al(), AP(), findFolderRcFile(), findRcFiles(), k9e(), Rot(), uj(), updateConfiguration() (+1 more)
 
-### Community 57 - "p"
-Cohesion: 0.11
-Nodes (23): destroy(), Gae(), gG(), gx(), h(), kHe(), kR(), mze() (+15 more)
+### Community 57 - "n"
+Cohesion: 0.08
+Nodes (34): ask(), b6e(), bit(), bot(), dme(), firstHook(), fSe(), Gae() (+26 more)
 
 ### Community 58 - "Uh"
-Cohesion: 0.12
-Nodes (18): ake(), B4e(), c0(), g8e(), _h(), Hh(), i3e(), k4e() (+10 more)
+Cohesion: 0.21
+Nodes (9): ake(), g8e(), _h(), Hh(), m8e(), n8e(), pke(), Uh() (+1 more)
 
 ### Community 59 - "render"
 Cohesion: 0.13
-Nodes (20): altDown(), altUp(), cancel(), close(), completion(), element(), error(), first() (+12 more)
+Nodes (20): altDown(), altUp(), cancel(), close(), completion(), element(), first(), footer() (+12 more)
 
 ### Community 60 - "writeFileSync"
-Cohesion: 0.16
-Nodes (19): appendFilePromise(), appendFileSync(), changeFileBufferPromise(), changeFileBufferSync(), changeFilePromise(), changeFileSync(), changeFileTextPromise(), changeFileTextSync() (+11 more)
+Cohesion: 0.18
+Nodes (17): appendFilePromise(), appendFileSync(), changeFileBufferPromise(), changeFileBufferSync(), changeFilePromise(), changeFileSync(), changeFileTextPromise(), changeFileTextSync() (+9 more)
 
 ### Community 61 - "reportInfo"
-Cohesion: 0.14
-Nodes (27): clearProgress(), commit(), createStreamReporter(), eI(), finalize(), formatIndent(), formatName(), formatNameWithHyperlink() (+19 more)
+Cohesion: 0.15
+Nodes (26): clearProgress(), commit(), createStreamReporter(), eI(), finalize(), formatIndent(), formatName(), formatNameWithHyperlink() (+18 more)
 
 ### Community 62 - "a8e"
-Cohesion: 0.10
-Nodes (21): _4e(), a4e(), a8e(), c4e(), c8e(), e3e(), f8e(), h_e() (+13 more)
+Cohesion: 0.13
+Nodes (15): _4e(), a8e(), c4e(), c8e(), e3e(), f8e(), i8e(), j4e() (+7 more)
 
-### Community 63 - "Hr"
-Cohesion: 0.14
-Nodes (18): Bz(), cX(), e_e(), [Em](), Hr(), jM(), jP(), [mm]() (+10 more)
+### Community 63 - "cX"
+Cohesion: 0.22
+Nodes (11): cX(), e_e(), jM(), jMe(), jP(), oMe(), Q3e(), QX() (+3 more)
 
 ### Community 64 - "fm"
 Cohesion: 0.14
 Nodes (20): Av(), Cpe(), dpe(), Epe(), Fj(), fm(), frt(), FT() (+12 more)
 
-### Community 65 - "Bi"
-Cohesion: 0.06
-Nodes (28): b1t(), Bi(), d1t(), getLimit(), getSpecial(), getSubprocessStreams(), getSupportedArchitectures(), h1t() (+20 more)
+### Community 65 - "toJSON"
+Cohesion: 0.07
+Nodes (31): b1t(), commitBuffer(), concat(), cyt(), d1t(), dV(), e0t(), E2e() (+23 more)
 
 ### Community 66 - "yl"
-Cohesion: 0.11
-Nodes (22): accepts(), Ape(), B8(), _ce(), downloadBytes(), downloadFile(), downloadHosted(), el() (+14 more)
+Cohesion: 0.21
+Nodes (12): Ape(), downloadBytes(), downloadFile(), downloadHosted(), fetch(), getFetcher(), getLocalPath(), getWorkspace() (+4 more)
 
-### Community 67 - "Vr"
-Cohesion: 0.19
-Nodes (23): _6e(), a2(), B2(), by(), fo(), jL(), L2(), ne() (+15 more)
+### Community 67 - "v"
+Cohesion: 0.18
+Nodes (22): a2(), Bu(), [cA](), da(), Eu(), HA(), KL(), kP() (+14 more)
 
 ### Community 68 - "ExerciseCard.test.tsx"
 Cohesion: 0.20
 Nodes (12): exercise, t3Exercise, Wrapper(), Wrapper(), Wrapper(), Wrapper(), UnitToggle(), UnitContext (+4 more)
 
-### Community 69 - "Dn"
-Cohesion: 0.10
-Nodes (22): a3e(), BM(), Bre(), cM(), Dn(), G5e(), JXe(), kte() (+14 more)
+### Community 69 - "cM"
+Cohesion: 0.33
+Nodes (6): cM(), JXe(), mxe(), oxe(), sz(), yxe()
 
-### Community 70 - "Vl"
-Cohesion: 0.29
-Nodes (10): compile(), gc(), n0(), registerOptions(), Sa(), UL(), Vl(), xqe() (+2 more)
+### Community 70 - "Ut"
+Cohesion: 0.18
+Nodes (25): Ao(), Bat(), bh(), componentDidCatch(), dP(), En(), ep(), h0() (+17 more)
 
-### Community 71 - "chmodSync"
-Cohesion: 0.17
-Nodes (16): ert(), hydrateDirectory(), mkdirpPromise(), mkdirPromise(), mkdirpSync(), mkdirSync(), mktempPromise(), mktempSync() (+8 more)
+### Community 71 - "_x"
+Cohesion: 0.18
+Nodes (18): c9e(), E9e(), hre(), I9e(), J2(), Kf(), od(), q9e() (+10 more)
 
 ### Community 72 - "jy"
-Cohesion: 0.22
-Nodes (18): jy(), be(), ce(), d(), fe(), ge(), I(), ie() (+10 more)
+Cohesion: 0.06
+Nodes (44): Ame(), aUe(), c_e(), cMe(), d8e(), fTe(), Gh(), h8e() (+36 more)
 
 ### Community 73 - "run"
-Cohesion: 0.13
-Nodes (22): addOnPostRun(), addOnPreRun(), callRuntimeCallbacks(), createWorker(), definition(), definitions(), ensureInitRuntime(), format() (+14 more)
+Cohesion: 0.21
+Nodes (14): createWorker(), definition(), definitions(), error(), format(), getUsageByIndex(), getUsageByRegistration(), inc() (+6 more)
 
-### Community 74 - "Ade"
-Cohesion: 0.40
-Nodes (5): Ade(), fde(), kit(), ude(), X0()
+### Community 74 - "c3e"
+Cohesion: 0.14
+Nodes (14): _3e(), a3e(), B3e(), c3e(), e8e(), f3e(), j3e(), l3e() (+6 more)
 
 ### Community 75 - "renderChoice"
-Cohesion: 0.18
-Nodes (15): choiceMessage(), choiceSeparator(), getResolverByLocator(), indent(), indicator(), onChoice(), pointer(), renderChoice() (+7 more)
+Cohesion: 0.19
+Nodes (14): choiceMessage(), choiceSeparator(), getResolverByLocator(), indent(), indicator(), onChoice(), renderChoice(), renderChoices() (+6 more)
 
 ### Community 76 - "tNe"
-Cohesion: 0.11
-Nodes (19): cNe(), eNe(), fNe(), g3e(), iNe(), jFe(), jX(), kM() (+11 more)
+Cohesion: 0.06
+Nodes (37): aFe(), BFe(), cFe(), cNe(), eNe(), fFe(), fNe(), g3e() (+29 more)
 
-### Community 77 - "copySync"
-Cohesion: 0.16
-Nodes (17): copySync(), deleteEntry(), movePromise(), moveSync(), readdirPromise(), readdirSync(), removePromise(), removeSync() (+9 more)
-
-### Community 78 - "sFe"
+### Community 77 - "makeCallSync"
 Cohesion: 0.12
-Nodes (17): aFe(), BFe(), cFe(), fFe(), iFe(), jz(), lFe(), nFe() (+9 more)
+Nodes (29): chmodSync(), copySync(), deleteEntry(), ert(), existsSync(), findMount(), getUnixMode(), lstatSync() (+21 more)
+
+### Community 78 - "Hr"
+Cohesion: 0.15
+Nodes (13): _8e(), Aa(), Bz(), [Em](), Hr(), [mm](), nM(), rHe() (+5 more)
 
 ### Community 79 - "lM"
 Cohesion: 0.29
 Nodes (7): aX(), ixe(), KXe(), lM(), nz(), Qxe(), vHe()
 
 ### Community 80 - "tke"
-Cohesion: 0.14
-Nodes (17): az(), cke(), eke(), fke(), fz(), ike(), lke(), lz() (+9 more)
+Cohesion: 0.10
+Nodes (22): az(), cke(), eke(), eOe(), fke(), fz(), ike(), lke() (+14 more)
 
 ### Community 81 - "vqe"
 Cohesion: 0.60
 Nodes (5): Bqe(), Hx(), pl(), vqe(), yM()
 
-### Community 82 - "E"
-Cohesion: 0.09
-Nodes (28): b6e(), B_e(), createCacheableRequest(), d8(), E(), fH(), getSession(), h8() (+20 more)
+### Community 82 - "r"
+Cohesion: 0.08
+Nodes (25): $9e(), addOrCreate(), B0t(), cD(), command(), commands(), createConnection(), d8() (+17 more)
 
 ### Community 83 - "getFileSource"
 Cohesion: 0.17
-Nodes (16): addDirectory(), allocateBuffer(), allocateSource(), allocateUnattachedSource(), discardAndClose(), E0(), getBufferAndClose(), getExternalAttributes() (+8 more)
+Nodes (15): addDirectory(), allocateBuffer(), allocateSource(), allocateUnattachedSource(), copyFileSync(), getExternalAttributes(), hydrateDirectory(), makeLibzipError() (+7 more)
 
 ### Community 84 - "zA"
-Cohesion: 0.22
-Nodes (13): Au(), Xa(), Mg(), p2(), Ao(), Df(), gc(), JA() (+5 more)
+Cohesion: 0.16
+Nodes (16): co(), LU(), mt(), OU(), No(), Ol(), Ph(), $r() (+8 more)
 
-### Community 85 - "Ff"
-Cohesion: 0.22
-Nodes (9): BMe(), eFe(), Ff(), fX(), kMe(), mRe(), wme(), wqe() (+1 more)
+### Community 85 - "u0"
+Cohesion: 0.20
+Nodes (10): BLe(), BMe(), Cle(), fX(), i4e(), kMe(), s4e(), u0() (+2 more)
 
 ### Community 86 - "_filter"
 Cohesion: 0.12
@@ -667,29 +681,29 @@ Nodes (16): cye(), dlt(), eye(), F9(), iye(), llt(), lye(), N9() (+8 more)
 Cohesion: 0.10
 Nodes (19): config:recommended, :configMigration, :maintainLockFilesWeekly, schedule:earlyMondays, :semanticCommits, extends, internalChecksFilter, labels (+11 more)
 
-### Community 89 - "Gh"
-Cohesion: 0.18
-Nodes (11): aUe(), Gh(), jNe(), lUe(), m4e(), oUe(), Qle(), _Ue() (+3 more)
+### Community 89 - "resolveFilename"
+Cohesion: 0.27
+Nodes (13): getFileSource(), getRealPath(), isSymbolicLink(), mapFromBase(), prepareReadlink(), readFileBuffer(), readlinkPromise(), readlinkSync() (+5 more)
 
 ### Community 90 - "CF"
 Cohesion: 0.19
 Nodes (14): c3(), CF(), dze(), EF(), Eq(), h3(), hze(), Iq() (+6 more)
 
 ### Community 91 - "u4e"
-Cohesion: 0.14
-Nodes (14): dxe(), ez(), f4e(), gxe(), hxe(), k_e(), Q_e(), r4e() (+6 more)
+Cohesion: 0.13
+Nodes (15): dxe(), ez(), f4e(), gxe(), hxe(), k_e(), n4e(), Q_e() (+7 more)
 
 ### Community 92 - "mme"
 Cohesion: 0.16
 Nodes (13): a9(), Bo(), c9(), Eme(), gme(), hme(), mme(), p() (+5 more)
 
 ### Community 93 - "h9e"
-Cohesion: 0.13
-Nodes (21): A9e(), bte(), c9e(), d9e(), f(), Dte(), E9e(), f9e() (+13 more)
+Cohesion: 0.22
+Nodes (14): A9e(), bte(), d9e(), f(), Dte(), f9e(), h9e(), JU() (+6 more)
 
 ### Community 94 - "eOe"
-Cohesion: 0.14
-Nodes (16): aNe(), dNe(), eOe(), gNe(), hNe(), kNe(), oNe(), oz() (+8 more)
+Cohesion: 0.13
+Nodes (18): aNe(), Bre(), Dn(), dNe(), gNe(), hNe(), kNe(), nTe() (+10 more)
 
 ### Community 95 - "txe"
 Cohesion: 0.20
@@ -699,29 +713,29 @@ Nodes (12): C0e(), eXe(), Kot(), mNe(), nxe(), oM(), pz(), rxe() (+4 more)
 Cohesion: 0.14
 Nodes (14): Eg(), eve(), fromJSON(), g1t(), gyt(), iy(), m1t(), N1t() (+6 more)
 
-### Community 97 - "makeCallback"
+### Community 97 - ".pipe"
 Cohesion: 0.18
-Nodes (20): chmodPromise(), chmodSync(), chownPromise(), chownSync(), fchmodPromise(), fchmodSync(), fchownPromise(), fchownSync() (+12 more)
+Nodes (10): C(), j0t(), Jdt(), K2e(), Kdt(), pipe(), unpipe(), V0t() (+2 more)
 
 ### Community 98 - "_makeRequest"
 Cohesion: 0.26
 Nodes (12): _beforeError(), _error(), _finalizeBody(), _lockWrite(), _makeRequest(), _onRequest(), _onResponse(), _onResponseBase() (+4 more)
 
 ### Community 99 - "i1e"
-Cohesion: 0.06
-Nodes (36): aW(), B1e(), E1e(), Fdt(), finalizeInstall(), finalizeInstallWithPnp(), findInstallState(), findPackageLocation() (+28 more)
+Cohesion: 0.07
+Nodes (35): aW(), B1e(), E1e(), Fdt(), finalizeInstall(), finalizeInstallWithPnp(), findInstallState(), findPackageLocation() (+27 more)
 
 ### Community 100 - "nD"
-Cohesion: 0.18
-Nodes (13): j0t(), Jdt(), jgt(), Kdt(), nD(), V0t(), vgt(), VW() (+5 more)
+Cohesion: 0.38
+Nodes (7): jgt(), nD(), vgt(), w2e(), Xgt(), y2e(), zgt()
 
 ### Community 101 - "read"
 Cohesion: 0.20
 Nodes (12): api(), _emitEntry(), _getReaderOptions(), _getRootDirectory(), _handleDirectory(), _handleEntry(), _handleError(), _handleQueue() (+4 more)
 
 ### Community 102 - "vc"
-Cohesion: 0.17
-Nodes (12): Gje(), gle(), hle(), jje(), Kje(), mle(), ple(), qje() (+4 more)
+Cohesion: 0.18
+Nodes (11): Gje(), Kje(), mle(), nMe(), qje(), vc(), Vje(), Wje() (+3 more)
 
 ### Community 103 - "buildCallerFunction"
 Cohesion: 0.24
@@ -732,24 +746,24 @@ Cohesion: 0.18
 Nodes (11): buildPaths(), checkPath(), findIssuer(), sort(), verify(), verifyMessageDigest(), verifyPolicy(), verifySignature() (+3 more)
 
 ### Community 105 - "find"
-Cohesion: 0.15
-Nodes (14): choices(), decrement(), executeRegular(), find(), findIndex(), focus(), initialize(), map() (+6 more)
+Cohesion: 0.20
+Nodes (11): choices(), enable(), find(), findIndex(), focus(), initialize(), map(), reset() (+3 more)
 
 ### Community 106 - "Ia"
-Cohesion: 0.24
-Nodes (4): copyIn(), Qmt(), _read(), rmt()
+Cohesion: 0.29
+Nodes (5): copyIn(), Ia(), Qmt(), _read(), rmt()
 
-### Community 107 - "jh"
-Cohesion: 0.17
-Nodes (12): d8e(), h8e(), i4e(), j8e(), jh(), kx(), mUe(), n4e() (+4 more)
+### Community 107 - "ace"
+Cohesion: 0.20
+Nodes (3): ace(), U(), x()
 
 ### Community 108 - "fetchPackageFromCache"
-Cohesion: 0.13
-Nodes (20): aZe(), ensureVirtualLink(), fetchPackageFromCache(), fn(), getChecksumFilename(), getDependencyMeta(), getLocatorFilename(), getLocatorMirrorPath() (+12 more)
+Cohesion: 0.08
+Nodes (31): aZe(), cze(), dI(), ensureVirtualLink(), F8(), fetchPackageFromCache(), FQ(), getChecksumFilename() (+23 more)
 
 ### Community 109 - "isDisabled"
-Cohesion: 0.27
-Nodes (12): down(), enable(), isDisabled(), pageDown(), pageUp(), scrollDown(), scrollUp(), selectable() (+4 more)
+Cohesion: 0.31
+Nodes (11): down(), isDisabled(), pageDown(), pageUp(), scrollDown(), scrollUp(), selectable(), shiftDown() (+3 more)
 
 ### Community 110 - "n2t"
 Cohesion: 0.22
@@ -760,12 +774,12 @@ Cohesion: 0.40
 Nodes (6): aG(), Dit(), ide(), nde(), Nit(), vit()
 
 ### Community 112 - "submit"
-Cohesion: 0.20
-Nodes (11): cast(), check(), hint(), isFalse(), isTrue(), isValue(), result(), submit() (+3 more)
+Cohesion: 0.24
+Nodes (9): cast(), hint(), isFalse(), isTrue(), isValue(), submit(), toNumber(), validate() (+1 more)
 
 ### Community 113 - "process"
-Cohesion: 0.13
-Nodes (15): createEnvironment(), createSession(), Fat(), genEnforcedDependencies(), genEnforcedFields(), lookup(), _lookup(), lookupAsync() (+7 more)
+Cohesion: 0.15
+Nodes (13): createEnvironment(), createSession(), Fat(), genEnforcedDependencies(), genEnforcedFields(), lookup(), _lookup(), lookupAsync() (+5 more)
 
 ### Community 114 - "Tp"
 Cohesion: 0.24
@@ -776,28 +790,28 @@ Cohesion: 0.31
 Nodes (10): DZ(), vle(), zje(), f(), h(), p(), S(), x() (+2 more)
 
 ### Community 116 - "Fp"
-Cohesion: 0.24
-Nodes (11): forgetVirtualResolutions(), Fp(), getWorkspaceByDescriptor(), getWorkspaceByIdent(), $k(), NB(), oi(), QB() (+3 more)
+Cohesion: 0.31
+Nodes (9): forgetVirtualResolutions(), Fp(), getWorkspaceByDescriptor(), $k(), NB(), oi(), QB(), tryWorkspaceByDescriptor() (+1 more)
 
-### Community 117 - "Hpe"
-Cohesion: 0.16
-Nodes (14): _5(), cloneFromRemote(), Fae(), H5(), Hpe(), J0e(), jj(), K0e() (+6 more)
+### Community 117 - "aI"
+Cohesion: 0.18
+Nodes (11): aI(), cI(), getPackageExtensions(), getWorkspaceByIdent(), getWorkspaceByLocator(), k4(), triggerHook(), triggerMultipleHooks() (+3 more)
 
 ### Community 118 - "setTimeout"
-Cohesion: 0.29
-Nodes (13): setTimeout(), sweep(), tlt(), toggleLightGC(), Wut(), fe(), I(), ie() (+5 more)
+Cohesion: 0.23
+Nodes (16): _emscripten_get_now(), _emscripten_set_main_loop(), _emscripten_set_main_loop_timing(), setTimeout(), sweep(), tlt(), toggleLightGC(), Wut() (+8 more)
 
-### Community 119 - "u0"
-Cohesion: 0.33
-Nodes (6): BLe(), Cle(), jMe(), u0(), uMe(), wLe()
+### Community 119 - "crt"
+Cohesion: 0.20
+Nodes (10): aj(), am(), commitTips(), crt(), dj(), Ej(), gj(), qu() (+2 more)
 
-### Community 120 - ".on"
-Cohesion: 0.13
-Nodes (12): Ch(), collect(), _dump(), _flush(), K0t(), mFe(), nmt(), on() (+4 more)
+### Community 120 - "Ch"
+Cohesion: 0.32
+Nodes (4): Ch(), _flush(), nmt(), z2e()
 
-### Community 121 - "o2"
-Cohesion: 0.47
-Nodes (6): Ct(), dc(), at(), ir(), Ns(), Yt()
+### Community 121 - "BP"
+Cohesion: 0.14
+Nodes (24): BP(), by(), C2(), Ct(), dc(), at(), Ds(), f2() (+16 more)
 
 ### Community 122 - "makeBound"
 Cohesion: 0.25
@@ -807,9 +821,9 @@ Nodes (7): __decorate(), _defineHidden(), disableMember(), __extends(), makeBoun
 Cohesion: 0.17
 Nodes (12): aOe(), BOe(), cOe(), fOe(), iOe(), lOe(), nOe(), oOe() (+4 more)
 
-### Community 124 - "load"
-Cohesion: 0.28
-Nodes (9): ensureDependencyMeta(), ensurePeerDependencyMeta(), Ex(), Gce(), gl(), load(), loadFile(), loadFromText() (+1 more)
+### Community 124 - "fn"
+Cohesion: 0.10
+Nodes (26): accepts(), B8(), C8(), _ce(), el(), ensureDependencyMeta(), ensurePeerDependencyMeta(), Ex() (+18 more)
 
 ### Community 125 - "s9"
 Cohesion: 0.25
@@ -835,9 +849,9 @@ Nodes (7): Cde(), dG(), hG(), Hit(), _it(), Oit(), Uit()
 Cohesion: 0.25
 Nodes (8): extAuthorityKeyID(), extBasicConstraints(), extension(), extKeyUsage(), extSCT(), extSubjectAltName(), extSubjectKeyID(), findExtension()
 
-### Community 131 - "responseHeaders"
+### Community 131 - "L1"
 Cohesion: 0.20
-Nodes (11): AGe(), _ageValue(), _allowsStoringAuthenticated(), _copyWithoutHopByHopHeaders(), _hasExplicitExpiration(), now(), _requestMatches(), responseHeaders() (+3 more)
+Nodes (8): dd(), getSupportedArchitectures(), L1(), Ntt(), RSt(), rv(), sj(), tSt()
 
 ### Community 132 - "installPackage"
 Cohesion: 0.29
@@ -871,9 +885,9 @@ Nodes (10): cwt(), h4(), hbe(), hd(), HE(), kc(), L7(), lae() (+2 more)
 Cohesion: 0.50
 Nodes (4): DL(), Fg(), supportsLocator(), tryResolverByLocator()
 
-### Community 140 - "Ame"
-Cohesion: 0.22
-Nodes (8): Ame(), c_e(), cMe(), fTe(), lMe(), rMe(), tMe(), wM()
+### Community 140 - "c0"
+Cohesion: 0.25
+Nodes (9): B4e(), c0(), i3e(), k4e(), n3e(), s3e(), w4e(), x4e() (+1 more)
 
 ### Community 141 - "t3"
 Cohesion: 0.33
@@ -883,9 +897,9 @@ Nodes (7): i3(), lze(), n3(), r3(), t3(), xle(), y3()
 Cohesion: 0.29
 Nodes (7): reportCommandName(), reportDependencyCount(), reportPackageExtension(), reportPluginName(), reportValue(), reportVersion(), reportWorkspaceCount()
 
-### Community 143 - "gpe"
-Cohesion: 0.21
-Nodes (14): aj(), am(), Brt(), dj(), Ej(), gj(), gpe(), jpe() (+6 more)
+### Community 143 - "xI"
+Cohesion: 0.18
+Nodes (16): activatePlugin(), Brt(), gpe(), gx(), hj(), HT(), importSettings(), jpe() (+8 more)
 
 ### Community 144 - "ensureCapacity"
 Cohesion: 0.33
@@ -896,8 +910,8 @@ Cohesion: 0.33
 Nodes (6): _Bt(), fBt(), HBt(), jBt(), uBt(), zBt()
 
 ### Community 146 - "Egt"
-Cohesion: 0.40
-Nodes (5): c2e(), Egt(), PW(), wgt(), wW()
+Cohesion: 0.67
+Nodes (3): c2e(), Egt(), wW()
 
 ### Community 147 - "Pue"
 Cohesion: 0.33
@@ -916,8 +930,8 @@ Cohesion: 0.40
 Nodes (5): a_e(), d_e(), l_e(), o_e(), s_e()
 
 ### Community 151 - "toChoice"
-Cohesion: 0.40
-Nodes (5): addChoice(), isChoice(), isSelected(), newItem(), toChoice()
+Cohesion: 0.29
+Nodes (7): addChoice(), hot(), isChoice(), isSelected(), newItem(), toChoice(), toChoices()
 
 ### Community 152 - "makeInterval"
 Cohesion: 0.40
@@ -931,9 +945,9 @@ Nodes (5): aQ(), dle(), fJe(), LJe(), OJe()
 Cohesion: 0.40
 Nodes (5): aSt(), cst(), F1(), oSt(), sSt()
 
-### Community 155 - "Ste"
-Cohesion: 0.40
-Nodes (5): BNe(), lTe(), Ste(), vz(), wNe()
+### Community 155 - "an"
+Cohesion: 0.10
+Nodes (20): an(), B_e(), BNe(), createCacheableRequest(), dqe(), dre(), fH(), fRe() (+12 more)
 
 ### Community 156 - "checkFinalSnapsnot"
 Cohesion: 0.40
@@ -947,17 +961,17 @@ Nodes (5): D4(), Kae(), KKe(), P4(), wae()
 Cohesion: 0.33
 Nodes (6): eo(), Ime(), kat(), s(), yme(), a()
 
-### Community 159 - "delete"
-Cohesion: 0.32
-Nodes (8): complete(), delete(), deleteForward(), get(), _getKeyPrefix(), _getKeyPrefixArray(), has(), suggest()
+### Community 159 - "get"
+Cohesion: 0.33
+Nodes (6): get(), _getKeyPrefix(), _getKeyPrefixArray(), has(), _set(), _tick()
 
 ### Community 160 - "W0e"
 Cohesion: 0.40
 Nodes (5): fc(), O5(), oat(), W0e(), Y0e()
 
 ### Community 161 - "BB"
-Cohesion: 0.29
-Nodes (7): b4(), BB(), iae(), oae(), Sk(), W0(), wB()
+Cohesion: 0.33
+Nodes (6): b4(), BB(), iae(), oae(), Sk(), wB()
 
 ### Community 162 - "rCt"
 Cohesion: 0.40
@@ -987,9 +1001,9 @@ Nodes (4): byt(), lve(), Syt(), vyt()
 Cohesion: 0.50
 Nodes (4): constructType(), getType(), getTypes(), queryType()
 
-### Community 169 - "dx"
-Cohesion: 0.50
-Nodes (4): cUe(), dx(), gz(), sUe()
+### Community 169 - "x"
+Cohesion: 0.32
+Nodes (8): Fit(), ct(), je(), Qe(), Se(), Te(), Rit(), x()
 
 ### Community 170 - "dBt"
 Cohesion: 0.50
@@ -1063,9 +1077,9 @@ Nodes (3): cvt(), lvt(), uvt()
 Cohesion: 0.67
 Nodes (3): d7e(), h7e(), vse()
 
-### Community 188 - "lstatPromise"
-Cohesion: 0.33
-Nodes (7): genTraversePromise(), lstatPromise(), lstatSync(), lutimesPromise(), lutimesSync(), preserveTimePromise(), preserveTimeSync()
+### Community 188 - "getBufferAndClose"
+Cohesion: 0.48
+Nodes (7): discardAndClose(), E0(), getBufferAndClose(), prepareClose(), saveAndClose(), unwatchFile(), y0()
 
 ### Community 189 - "generateTargetPath"
 Cohesion: 0.67
@@ -1091,9 +1105,9 @@ Nodes (3): encode(), encodeBody(), encodeField()
 Cohesion: 0.67
 Nodes (3): eSt(), KDe(), VDe()
 
-### Community 195 - "_fillStorage"
-Cohesion: 0.67
-Nodes (3): _fillStorage(), _getPatternSegments(), _splitSegmentsIntoSections()
+### Community 195 - "a4e"
+Cohesion: 0.33
+Nodes (6): a4e(), h_e(), j_e(), o4e(), p4e(), sx()
 
 ### Community 196 - "fve"
 Cohesion: 0.67
@@ -1139,9 +1153,9 @@ Nodes (3): L2e(), p0t(), x0t()
 Cohesion: 0.67
 Nodes (3): L4(), reportHit(), reportInstall()
 
-### Community 207 - "mE"
+### Community 207 - "jze"
 Cohesion: 0.40
-Nodes (5): Et(), LU(), mE(), OU(), U2()
+Nodes (5): jze(), f(), h(), p(), Rc()
 
 ### Community 208 - "splice"
 Cohesion: 0.67
@@ -1159,21 +1173,21 @@ Nodes (3): Q0t(), c(), f()
 Cohesion: 0.67
 Nodes (3): testify(), WCt(), yCt()
 
-### Community 214 - "warn"
+### Community 214 - "startSectionPromise"
 Cohesion: 0.33
-Nodes (6): [g6](), [ghe](), [mhe](), [P6](), warn(), [ZT]()
+Nodes (6): reportErrorOnce(), reportExceptionOnce(), startSectionPromise(), startSectionSync(), startTimerPromise(), startTimerSync()
 
 ### Community 215 - "hM"
 Cohesion: 0.50
 Nodes (5): hM(), hz(), jKe(), VKe(), zke()
 
-### Community 220 - "toChoices"
-Cohesion: 0.50
-Nodes (4): hot(), P5(), toChoices(), x5()
+### Community 220 - "a"
+Cohesion: 0.60
+Nodes (6): _typeModule(), a(), n(), p(), r(), s()
 
-### Community 222 - "exit"
-Cohesion: 0.67
-Nodes (3): exit(), exitRuntime(), ExitStatus()
+### Community 222 - "callRuntimeCallbacks"
+Cohesion: 0.22
+Nodes (11): addOnPostRun(), addOnPreRun(), callRuntimeCallbacks(), ensureInitRuntime(), exit(), exitRuntime(), ExitStatus(), postRun() (+3 more)
 
 ### Community 225 - "supports"
 Cohesion: 0.67
@@ -1183,28 +1197,76 @@ Nodes (3): supports(), tryFetcher(), w9()
 Cohesion: 0.18
 Nodes (11): C5(), Cot(), d0e(), eS(), executeUpClassic(), g0e(), h0e(), I5() (+3 more)
 
+### Community 233 - "JA"
+Cohesion: 0.80
+Nodes (5): Au(), Xa(), Ao(), Df(), JA()
+
+### Community 236 - "XU"
+Cohesion: 0.40
+Nodes (5): ere(), nRe(), rre(), tRe(), XU()
+
+### Community 239 - ".write"
+Cohesion: 0.50
+Nodes (3): Ggt(), kgt(), Qgt()
+
+### Community 255 - "jje"
+Cohesion: 0.50
+Nodes (4): gle(), hle(), jje(), ple()
+
+### Community 260 - "Mj"
+Cohesion: 0.67
+Nodes (3): bpe(), Mj(), pv()
+
+### Community 264 - "c0t"
+Cohesion: 0.67
+Nodes (3): c0t(), NW(), o0t()
+
+### Community 282 - "c"
+Cohesion: 1.00
+Nodes (3): d0t(), c(), f()
+
+### Community 283 - "prev"
+Cohesion: 0.67
+Nodes (3): decrement(), prev(), save()
+
+### Community 284 - "executeInteractive"
+Cohesion: 0.67
+Nodes (3): executeInteractive(), executeStandard(), j1()
+
+### Community 285 - "limitOpenFiles"
+Cohesion: 0.67
+Nodes (3): getMountPromise(), getMountSync(), limitOpenFiles()
+
+### Community 286 - "Got"
+Cohesion: 0.67
+Nodes (3): Got(), qot(), T5()
+
+### Community 287 - "vst"
+Cohesion: 1.00
+Nodes (3): vst(), c(), f()
+
 ## Ambiguous Edges - Review These
 - `index.html Spec` → `Favicon Link (/favicon.svg)`  [AMBIGUOUS]
   index.html · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **16 isolated node(s):** `config:recommended`, `:semanticCommits`, `:configMigration`, `:maintainLockFilesWeekly`, `schedule:earlyMondays` (+11 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 822 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **62 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **16 isolated node(s):** `config:recommended`, `:configMigration`, `:maintainLockFilesWeekly`, `schedule:earlyMondays`, `:semanticCommits` (+11 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 821 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **64 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Q6e()` connect `Q6e` to `Nl`, `hc`, `yarn-4.17.0.cjs`, `qn`, `Ut`, `zA`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `Q6e()` connect `Q6e` to `Ol`, `pa`, `yarn-4.17.0.cjs`, `JA`, `zA`, `BP`?**
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Are the 67 inferred relationships involving `s()` (e.g. with `a6e()` and `a9()`) actually correct?**
   _`s()` has 67 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `config:recommended`, `:semanticCommits`, `:configMigration` to the rest of the system?**
+- **What connects `config:recommended`, `:configMigration`, `:maintainLockFilesWeekly` to the rest of the system?**
   _16 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Component Tests & Theme Toggle` be split into smaller, more focused modules?**
   _Cohesion score 0.1349206349206349 - nodes in this community are weakly interconnected._
-- **Why does `jy()` connect `jy` to `v`, `Vr`, `yarn-4.17.0.cjs`, `qn`, `jh`, `b`, `Ut`, `c`, `o2`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `c()` connect `c` to `yarn-4.17.0.cjs`, `Q6e`, `lj`, `xI`, `b`, `Wr`, `execute`, `constructor`, `getCandidates`, `KVe`, `executeInteractive`, `kB`, `Bw`, `hc`, `Ol`, `BB`, `validateAndExecute`, `x`, `Nr`, `s`, `getSession`, `Yo`, `alert`, `V`, `n`, `render`, `fm`, `v`, `Ut`, `jy`, `renderChoice`, `Hr`, `jze`, `r`, `CF`, `h9e`, `.pipe`, `i1e`, `find`, `zje`, `setTimeout`, `BP`, `makeBound`, `once`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
 - **Are the 27 inferred relationships involving `c()` (e.g. with `a6e()` and `h()`) actually correct?**
   _`c()` has 27 INFERRED edges - model-reasoned connections that need verification._
 

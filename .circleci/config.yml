@@ -5,13 +5,11 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@4.0.0
 
 commands:
-  # Node 25+ no longer bundles corepack, but the node orb's yarn-berry install
-  # path calls `corepack enable` — install corepack globally from npm first.
   install-deps:
     steps:
       - run:
-          name: Install corepack
-          command: command -v corepack || sudo npm install -g corepack
+          name: Enable corepack
+          command: corepack enable
       - node/install-packages:
           pkg-manager: yarn-berry
 
