@@ -1009,14 +1009,24 @@ orbs:
   node: circleci/node@7.2.1
   sonarcloud: sonarsource/sonarcloud@4.0.0
 
+commands:
+  # Node 25+ no longer bundles corepack, but the node orb's yarn-berry install
+  # path calls `corepack enable` — install corepack globally from npm first.
+  install-deps:
+    steps:
+      - run:
+          name: Install corepack
+          command: command -v corepack || sudo npm install -g corepack
+      - node/install-packages:
+          pkg-manager: yarn-berry
+
 jobs:
   lint-and-typecheck:
     docker:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn lint
       - run: yarn typecheck
       - run: yarn format:check
@@ -1026,8 +1036,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn test:coverage
       - persist_to_workspace:
           root: .
@@ -1048,8 +1057,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn build
 
 workflows:
@@ -1069,7 +1077,7 @@ workflows:
 
 `SONAR_TOKEN` lives in a CircleCI context named `SonarCloud` — must match exactly whatever name is set in CircleCI org settings. It is never set as a plain project environment variable, since contexts are scoped, auditable, and reusable across future projects.
 
-No `corepack enable` step appears in any job. The project uses a vendored Yarn binary (`yarnPath` in `.yarnrc.yml`, committed to the repo) rather than corepack, because Vercel does not officially support Yarn 4 via corepack. The `node/install-packages` orb step with `pkg-manager: yarn-berry` detects and uses the vendored binary automatically — corepack is not part of this pipeline anywhere, including locally.
+CI uses corepack; Vercel does not. Vercel does not officially support Yarn 4 via corepack, so it reads the vendored binary through `yarnPath` in `.yarnrc.yml` (committed to the repo). In CircleCI, the `node/install-packages` orb step with `pkg-manager: yarn-berry` runs `corepack enable` itself. Node 25+ no longer bundles corepack, so the `install-deps` command first installs it globally with `sudo npm install -g corepack` (skipped if the image already provides it). This is the one sanctioned use of npm in the project. Corepack then resolves Yarn from the `packageManager` field, and Yarn 4 defers to the vendored `yarnPath` binary.
 
 Vercel handles deployment separately via its own GitHub integration (auto-deploy on push to `main`) — CircleCI does not deploy, it only gates quality. A failed CircleCI run does not block Vercel's deploy automatically; if you want that enforcement, set `main` branch protection on GitHub to require the CircleCI checks to pass before merge.
 
@@ -1090,7 +1098,7 @@ Vercel handles deployment separately via its own GitHub integration (auto-deploy
 - Default theme on first load: system
 - Keep `program.ts` as the single source of truth for all workout data
 - Use Yarn only — never npm or npx
-- Use the vendored Yarn binary via `yarnPath` in `.yarnrc.yml` — never corepack, anywhere, including CI
+- Use the vendored Yarn binary via `yarnPath` in `.yarnrc.yml` — Vercel relies on it; corepack is used only in CircleCI (installed via `npm install -g corepack`, the sole exception to the no-npm rule)
 - `nodeLinker: node-modules` must be set in `.yarnrc.yml`
 - Use `@/` path alias for all imports — never use relative `../../` paths
 - All contexts consumed via their named hooks (`useTheme`, `useUnit`) — never `useContext` directly in components

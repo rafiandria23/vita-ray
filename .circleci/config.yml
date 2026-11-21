@@ -4,14 +4,24 @@ orbs:
   node: circleci/node@7.2.1
   sonarcloud: sonarsource/sonarcloud@4.0.0
 
+commands:
+  # Node 25+ no longer bundles corepack, but the node orb's yarn-berry install
+  # path calls `corepack enable` — install corepack globally from npm first.
+  install-deps:
+    steps:
+      - run:
+          name: Install corepack
+          command: command -v corepack || sudo npm install -g corepack
+      - node/install-packages:
+          pkg-manager: yarn-berry
+
 jobs:
   lint-and-typecheck:
     docker:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn lint
       - run: yarn typecheck
       - run: yarn format:check
@@ -21,8 +31,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn test:coverage
       - persist_to_workspace:
           root: .
@@ -43,8 +52,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn build
 
 workflows:
