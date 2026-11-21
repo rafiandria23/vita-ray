@@ -47,3 +47,9 @@ vitest.config.js
 vitest.config.d.ts
 tailwind.config.js
 tailwind.config.d.ts
+
+# graphify — commit only the shared graph outputs (graph.json, GRAPH_REPORT.md, labels)
+graphify-out/*
+!graphify-out/graph.json
+!graphify-out/GRAPH_REPORT.md
+!graphify-out/.graphify_labels.json
