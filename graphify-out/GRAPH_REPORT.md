@@ -1,7 +1,7 @@
 # Graph Report - vita-ray  (2026-11-21)
 
 ## Corpus Check
-- 50 files · ~82,380 words
+- 50 files · ~82,631 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 12 file(s) not represented in the graph (top: (none) 6, .scss 4, .gz 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 217,213 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `df29fdac`
+- Built from commit: `50f14c4a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

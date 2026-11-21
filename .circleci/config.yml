@@ -5,11 +5,14 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@4.0.0
 
 commands:
+  # cimg/node (Node 25+) does not ship corepack. Install it into ~/.local (user-owned
+  # and on PATH in cimg images) so no sudo is needed; the node orb's yarn-berry
+  # install script then runs `corepack enable`, writing shims to ~/.local/bin.
   install-deps:
     steps:
       - run:
-          name: Enable corepack
-          command: corepack enable
+          name: Install corepack
+          command: command -v corepack || npm install -g --prefix ~/.local corepack
       - node/install-packages:
           pkg-manager: yarn-berry
 
