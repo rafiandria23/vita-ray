@@ -1,0 +1,17 @@
+{
+  "0": "Component Tests & Theme Toggle",
+  "1": "AGENTS.md Tooling & Standing Orders",
+  "2": "CircleCI Pipeline Config",
+  "3": "App Shell & Session Views",
+  "4": "Weight Calc & Unit Flow",
+  "5": "AGENTS.md App Spec Concepts",
+  "6": "TypeScript Compiler Config",
+  "11": "npm Scripts",
+  "12": "Theme System & index.html",
+  "13": "Node tsconfig",
+  "15": "Prettier Settings",
+  "19": "Favicon Artwork",
+  "28": "Vite Env Types",
+  "29": "Vercel Rewrites",
+  "30": "PostCSS Config"
+}

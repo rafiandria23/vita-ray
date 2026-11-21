@@ -1009,14 +1009,40 @@ orbs:
   node: circleci/node@7.2.1
   sonarcloud: sonarsource/sonarcloud@4.0.0
 
+commands:
+  # cimg/node (Node 25+) does not ship corepack. Install it into ~/.local (user-owned,
+  # so no sudo); the node orb's yarn-berry install script then runs `corepack enable`,
+  # writing shims next to the binary in ~/.local/bin.
+  install-deps:
+    steps:
+      - run:
+          name: Install corepack
+          command: |
+            set -euo pipefail
+            # Persist for all later steps instead of relying on the image's default PATH.
+            # Disable corepack's interactive download prompt in non-interactive CI.
+            # Single quotes are intentional: expand at each later step, not now.
+            # shellcheck disable=SC2016
+            {
+              echo 'export PATH="$HOME/.local/bin:$PATH"'
+              echo 'export COREPACK_ENABLE_DOWNLOAD_PROMPT=0'
+            } >> "$BASH_ENV"
+            export PATH="$HOME/.local/bin:$PATH"
+            if ! command -v corepack > /dev/null 2>&1; then
+              npm install --global --prefix "$HOME/.local" --no-audit --no-fund corepack
+            fi
+            # Fail fast here rather than inside the orb if corepack is not resolvable.
+            corepack --version
+      - node/install-packages:
+          pkg-manager: yarn-berry
+
 jobs:
   lint-and-typecheck:
     docker:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn lint
       - run: yarn typecheck
       - run: yarn format:check
@@ -1026,8 +1052,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn test:coverage
       - persist_to_workspace:
           root: .
@@ -1048,8 +1073,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn-berry
+      - install-deps
       - run: yarn build
 
 workflows:
@@ -1069,7 +1093,7 @@ workflows:
 
 `SONAR_TOKEN` lives in a CircleCI context named `SonarCloud` — must match exactly whatever name is set in CircleCI org settings. It is never set as a plain project environment variable, since contexts are scoped, auditable, and reusable across future projects.
 
-No `corepack enable` step appears in any job. The project uses a vendored Yarn binary (`yarnPath` in `.yarnrc.yml`, committed to the repo) rather than corepack, because Vercel does not officially support Yarn 4 via corepack. The `node/install-packages` orb step with `pkg-manager: yarn-berry` detects and uses the vendored binary automatically — corepack is not part of this pipeline anywhere, including locally.
+CI uses corepack; Vercel does not. Vercel does not officially support Yarn 4 via corepack, so it reads the vendored binary through `yarnPath` in `.yarnrc.yml` (committed to the repo). In CircleCI, the `node/install-packages` orb step with `pkg-manager: yarn-berry` runs `corepack enable` itself. The `cimg/node` image does not ship corepack (Node 25+ dropped it), so the `install-deps` command first installs it with `npm install --global --prefix "$HOME/.local" corepack` — `~/.local` is user-owned, so no sudo is needed (skipped if corepack is already present). The step explicitly appends `~/.local/bin` to `PATH` and sets `COREPACK_ENABLE_DOWNLOAD_PROMPT=0` via `$BASH_ENV` rather than relying on the image defaults, and runs `corepack --version` to fail fast. This is the one sanctioned use of npm in the project. Do not add a separate `corepack enable` step — the orb's script already runs it. Corepack then resolves Yarn from the `packageManager` field, and Yarn 4 defers to the vendored `yarnPath` binary.
 
 Vercel handles deployment separately via its own GitHub integration (auto-deploy on push to `main`) — CircleCI does not deploy, it only gates quality. A failed CircleCI run does not block Vercel's deploy automatically; if you want that enforcement, set `main` branch protection on GitHub to require the CircleCI checks to pass before merge.
 
@@ -1090,7 +1114,7 @@ Vercel handles deployment separately via its own GitHub integration (auto-deploy
 - Default theme on first load: system
 - Keep `program.ts` as the single source of truth for all workout data
 - Use Yarn only — never npm or npx
-- Use the vendored Yarn binary via `yarnPath` in `.yarnrc.yml` — never corepack, anywhere, including CI
+- Use the vendored Yarn binary via `yarnPath` in `.yarnrc.yml` — Vercel relies on it; corepack is used only in CircleCI (installed via `npm install --global --prefix "$HOME/.local" corepack` in the `install-deps` command — the sole exception to the no-npm rule)
 - `nodeLinker: node-modules` must be set in `.yarnrc.yml`
 - Use `@/` path alias for all imports — never use relative `../../` paths
 - All contexts consumed via their named hooks (`useTheme`, `useUnit`) — never `useContext` directly in components
@@ -1101,3 +1125,15 @@ Vercel handles deployment separately via its own GitHub integration (auto-deploy
 - Never commit `SONAR_TOKEN` or any secret — CircleCI context only
 - `eslint-config-prettier` must always be the last entry in `eslint.config.js`
 - No `console.log` left in committed code — use `console.warn`/`console.error` only where intentional
+
+## graphify
+
+This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
+
+Rules:
+
+- When graphify-out/graph.json exists, run `graphify query "<question>"` before your first grep, search or source-file read for a codebase question, and put this rule in every subagent prompt that explores code. Read raw files only for lines the graph or an earlier read already located. Use `graphify path "<A>" "<B>"` for relationships and `graphify explain "<concept>"` for focused concepts. When the answer is under a Markdown heading, `graphify section "<heading>"` prints that section's text, so the .md need not be opened. These return a scoped subgraph, usually much smaller than GRAPH_REPORT.md or raw grep output.
+- If graphify-out/wiki/index.md exists, use it for broad navigation instead of raw source browsing.
+- Read graphify-out/GRAPH_REPORT.md only for broad architecture review or when query/path/explain do not surface enough context.
+- After modifying code, run `graphify update .` to keep the graph current (AST-only, no API cost).
+- A committed graphify-out/graph.json is rewritten whole on every build, so a large diff to it in a pull request is expected. Do not flag it as churn or suggest skipping the graph rebuild or its hooks.
