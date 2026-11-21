@@ -1,0 +1,87 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":configMigration",
+    ":maintainLockFilesWeekly",
+    "schedule:earlyMondays"
+  ],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "labels": ["dependencies", "security"]
+  },
+  "lockFileMaintenance": {
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "description": "Automerge stable non-major updates once CI is green",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "description": "Major updates always need manual review",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "addLabels": ["breaking"]
+    },
+    {
+      "description": "TypeScript minors can contain breaking changes (not semver)",
+      "matchPackageNames": ["typescript"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
+    },
+    {
+      "description": "Project is pinned to Tailwind v3; v4 is a manual migration",
+      "matchPackageNames": ["tailwindcss"],
+      "allowedVersions": "<4"
+    },
+    {
+      "description": "engines.node is reviewed manually against the current LTS floor",
+      "matchDepTypes": ["engines"],
+      "enabled": false
+    },
+    {
+      "groupName": "react",
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"]
+    },
+    {
+      "groupName": "eslint",
+      "matchPackageNames": [
+        "eslint",
+        "@eslint/*",
+        "typescript-eslint",
+        "eslint-plugin-*",
+        "eslint-config-*"
+      ]
+    },
+    {
+      "groupName": "vite",
+      "matchPackageNames": ["vite", "@vitejs/*"]
+    },
+    {
+      "groupName": "vitest",
+      "matchPackageNames": ["vitest", "@vitest/*"]
+    },
+    {
+      "groupName": "testing-library",
+      "matchPackageNames": ["@testing-library/*"]
+    },
+    {
+      "groupName": "css tooling",
+      "matchPackageNames": ["tailwindcss", "postcss", "autoprefixer", "sass"]
+    },
+    {
+      "groupName": "circleci orbs",
+      "matchManagers": ["circleci"]
+    }
+  ]
+}
