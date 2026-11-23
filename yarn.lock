@@ -940,7 +940,7 @@ __metadata:
     "@types/node": "npm:^26.0.1"
     "@types/react": "npm:^19.0.0"
     "@types/react-dom": "npm:^19.0.0"
-    "@vitejs/plugin-react": "npm:^4.3.4"
+    "@vitejs/plugin-react": "npm:^4.7.0"
     "@vitest/coverage-v8": "npm:^4.1.9"
     autoprefixer: "npm:^10.4.20"
     eslint: "npm:^10.6.0"
@@ -959,7 +959,7 @@ __metadata:
     tailwindcss: "npm:^3.4.16"
     typescript: "npm:~5.7.2"
     typescript-eslint: "npm:^8.62.0"
-    vite: "npm:^6.0.5"
+    vite: "npm:^6.4.6"
     vitest: "npm:^4.1.9"
   languageName: unknown
   linkType: soft
@@ -1592,7 +1592,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^4.3.4":
+"@vitejs/plugin-react@npm:^4.7.0":
   version: 4.7.0
   resolution: "@vitejs/plugin-react@npm:4.7.0"
   dependencies:
@@ -5734,7 +5734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.5":
+"vite@npm:^6.4.6":
   version: 6.4.6
   resolution: "vite@npm:6.4.6"
   dependencies:
